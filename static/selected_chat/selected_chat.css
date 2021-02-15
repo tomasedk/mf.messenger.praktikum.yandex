@@ -140,6 +140,7 @@
     min-width: 70px;
     display: flex;
     justify-content: flex-end;
+    user-select: none;
 }
 
 .message__date {
@@ -251,10 +252,6 @@
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, .07);
     padding: 12px;
-}
-
-.search {
-    position: relative;
 }
 
 .search__input {

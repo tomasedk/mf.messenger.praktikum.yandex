@@ -10,6 +10,22 @@
 </head>
 <body>
 <div class="messenger">
+    <div class="modal add-user-modal">
+        <div class="modal__content">
+            <div class="modal__header">Добавить пользователя</div>
+            <div class="modal__body">
+                <div class="input">
+                    <input class="input__value add-user-modal__input" id="login" name="login" placeholder=" " type="text">
+                    <label class="input__label" for="login">
+                        <span class="input__label-content-name">Логин</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="button modal__action">Добавить</button>
+            </div>
+        </div>
+    </div>
     <aside class="sidebar">
         <div class="sidebar__header">
             <div class="search">
@@ -78,8 +94,8 @@
                 <img alt="Three dots" src="../sources/more.svg">
             </div>
             <ul class="user-actions-popup">
-                <li class="user-actions-popup__action">Добавить пользователя</li>
-                <li class="user-actions-popup__action">Удалить пользователя</li>
+                <li class="user-actions-popup__action user-actions-popup__action_add">Добавить пользователя</li>
+                <li class="user-actions-popup__action user-actions-popup__action_delete">Удалить пользователя</li>
             </ul>
         </div>
         <ul class="messages">
@@ -142,8 +158,19 @@
     let userActionsButton = document.querySelector('.user-actions');
     let userActionsPopup = document.querySelector('.user-actions-popup');
 
+    let addUserActionButton = document.querySelector('.user-actions-popup__action_add');
+
     let sendButton = document.querySelector('.send-message');
     let messageInput = document.querySelector('.input-message');
+
+
+    let modalActionButton = document.querySelector('.modal__action');
+    let addUserModal = document.querySelector('.add-user-modal');
+    let addUserModalInput = document.querySelector('.add-user-modal__input');
+
+    addUserModal.style.visibility = 'hidden';
+    userActionsPopup.style.visibility = 'hidden';
+    attachPopup.style.visibility = 'hidden';
 
     attachButton.addEventListener('click', () => {
         attachPopup.style.visibility = attachPopup.style.visibility === 'hidden' ? 'visible' : 'hidden';
@@ -153,9 +180,20 @@
         userActionsPopup.style.visibility = userActionsPopup.style.visibility === 'hidden' ? 'visible' : 'hidden';
     });
 
+    addUserActionButton.addEventListener('click', () => {
+        userActionsPopup.style.visibility = 'hidden'
+        addUserModal.style.visibility = 'visible';
+    });
+
     sendButton.addEventListener('click', () => {
         console.log(messageInput.value);
         messageInput.value = '';
+    });
+
+    modalActionButton.addEventListener('click', () => {
+        console.log(addUserModalInput.value);
+        addUserModalInput.value = '';
+        addUserModal.style.visibility = 'hidden';
     });
 </script>
 </body>

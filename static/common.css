@@ -104,3 +104,36 @@ ul {
 .input__value:invalid ~ .input__error {
     display: inline;
 }
+
+.modal {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal__content {
+    background-color: #2d303d;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px 16px 16px;
+    border-radius: 20px;
+}
+
+.modal__header {
+    font-size: 15px;
+    margin-bottom: 24px;
+}
+
+.modal__body {
+    margin-bottom: 32px;
+}
+
+.modal__action {
+    width: 100%;
+}
