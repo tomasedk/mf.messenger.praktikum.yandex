@@ -36,7 +36,7 @@
     font-size: 11px;
 }
 
-.more-actions-button {
+.user-actions {
     height: 28px;
     width: 28px;
     display: flex;
@@ -47,18 +47,56 @@
     user-select: none;
 }
 
-.more-actions-button:hover {
+.user-actions:hover {
     background-color: rgba(62, 89, 128, .4);
 }
 
-.more-actions-button:active {
+.user-actions:active {
+    background-color: #3c5980;
+}
+
+.user-actions-popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    right: 8px;
+    top: 60px;
+    background-color: #343745;
+    border-radius: 8px;
+}
+
+.user-actions-popup__action {
+    padding: 8px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+}
+
+.user-actions-popup__action:hover {
+    background-color: rgba(62, 89, 128, .4);
+}
+
+.user-actions-popup__action:hover:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.user-actions-popup__action:hover:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+.user-actions-popup__action:active {
     background-color: #3c5980;
 }
 
 .messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     overflow-y: scroll;
     width: 100%;
-    height: calc(100vh - 48px - 48px);
+    height: calc(100vh - 48px - 46px);
 }
 
 .message {
@@ -119,10 +157,11 @@
     justify-content: space-between;
     align-items: center;
     background-color: #343745;
-    padding: 8px 12px;
+    padding: 8px;
 }
 
 .attach-to-message {
+    flex-shrink: 0;
     width: 28px;
     height: 28px;
     cursor: pointer;
@@ -131,6 +170,40 @@
     border-radius: 50%;
     background: transparent url("../sources/clip.svg") no-repeat center;
     margin-right: 16px;
+}
+
+.attach-popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 54px;
+    background-color: #343745;
+    border-radius: 8px;
+}
+
+.attach-popup__item {
+    padding: 8px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+}
+
+.attach-popup__item:hover {
+    background-color: rgba(62, 89, 128, .4);
+}
+
+.attach-popup__item:hover:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.attach-popup__item:hover:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+.attach-popup__item:active {
+    background-color: #3c5980;
 }
 
 .input-message {
@@ -151,6 +224,7 @@
 }
 
 .send-message {
+    flex-shrink: 0;
     width: 28px;
     height: 28px;
     border-radius: 50%;
