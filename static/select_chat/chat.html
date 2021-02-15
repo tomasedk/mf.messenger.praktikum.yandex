@@ -3,15 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Messenger</title>
-    <link href="select_chat.css" rel="stylesheet" type="text/css">
     <link href="../common.css" rel="stylesheet" type="text/css">
+    <link href="select_chat.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="chat-page">
-    <aside></aside>
-    <section class="selected"></section>
+<div class="messenger">
+    <aside class="sidebar">
+        <div class="sidebar__header">
+            <div class="search">
+                <input class="search__input" placeholder="Поиск" type="text">
+            </div>
+            <nav>
+                <a class="link profile-link" href="../index.html">
+                    <span class="profile-link__text">Профиль</span>
+                    <img class="profile-link__arrow" alt="Blue arrow" src="../sources/arrow.svg">
+                </a>
+            </nav>
+        </div>
+        <ul class="sidebar__body">
+            <li class="chat">
+                <div class="photo chat__user-photo">ИИ</div>
+                <div class="chat__preview-container">
+                    <span class="username chat__username">Иван Иванов</span>
+                    <span class="chat__preview-message">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem commodi consequatur
+                        consequuntur dicta eveniet facilis nihil nulla pariatur voluptas!
+                    </span>
+                </div>
+                <div class="chat__message-info">
+                    <span class="chat__message-date">02:17</span>
+                    <div class="notification chat__message-notification">21</div>
+                </div>
+            </li>
+
+            <li class="chat">
+                <div class="photo chat__user-photo">ПЛ</div>
+                <div class="chat__preview-container">
+                    <span class="username chat__username">Петр Леонтьев</span>
+                    <span class="chat__preview-message">
+                        Дружище, привет! Сегодня отличная погода. Как насчет прогулки?
+                    </span>
+                </div>
+                <div class="chat__message-info">
+                    <span class="chat__message-date">10:23</span>
+                    <div class="notification chat__message-notification">1</div>
+                </div>
+            </li>
+
+            <li class="chat chat_selected">
+                <div class="photo chat__user-photo">ИИ</div>
+                <div class="chat__preview-container">
+                    <span class="username chat__username">Иван Иванов</span>
+                    <span class="chat__preview-message">
+                        <span class="chat__preview-message_self-mark">Вы: </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem commodi consequatur
+                        consequuntur dicta eveniet facilis nihil nulla pariatur voluptas!
+                    </span>
+                </div>
+                <div class="chat__message-info">
+                    <span class="chat__message-date">02:17</span>
+                    <div class="notification chat__message-notification chat__message-notification_hidden">21</div>
+                </div>
+            </li>
+        </ul>
+    </aside>
+    <section class="chat-view">
+        <div class="empty-chat">Выберите чат для отправки сообщения</div>
+    </section>
 </div>
+<script>
+    Array.from(document.getElementsByClassName("chat")).forEach(msg => {
+        msg.addEventListener('click', function () { window.location.href = "../selected_chat/chat.html"; });
+    })
+</script>
 </body>
 </html>

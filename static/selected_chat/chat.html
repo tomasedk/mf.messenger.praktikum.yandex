@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messenger</title>
+    <link href="../common.css" rel="stylesheet" type="text/css">
+    <link href="selected_chat.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="messenger">
+    <aside class="sidebar">
+        <div class="sidebar__header">
+            <div class="search">
+                <input class="search__input" placeholder="Поиск" type="text">
+            </div>
+            <nav>
+                <a class="link profile-link" href="../index.html">
+                    <span class="profile-link__text">Профиль</span>
+                    <img alt="Blue arrow" class="profile-link__arrow" src="../sources/arrow.svg">
+                </a>
+            </nav>
+        </div>
+        <ul class="sidebar__body">
+            <li class="chat">
+                <div class="photo chat__user-photo">ИИ</div>
+                <div class="chat__preview-container">
+                    <span class="username chat__username">Иван Иванов</span>
+                    <span class="chat__preview-message">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem commodi consequatur
+                        consequuntur dicta eveniet facilis nihil nulla pariatur voluptas!
+                    </span>
+                </div>
+                <div class="chat__message-info">
+                    <span class="chat__message-date">02:17</span>
+                    <div class="notification chat__message-notification">21</div>
+                </div>
+            </li>
+
+            <li class="chat">
+                <div class="photo chat__user-photo">ПЛ</div>
+                <div class="chat__preview-container">
+                    <span class="username chat__username">Петр Леонтьев</span>
+                    <span class="chat__preview-message">
+                        Дружище, привет! Сегодня отличная погода. Как насчет прогулки?
+                    </span>
+                </div>
+                <div class="chat__message-info">
+                    <span class="chat__message-date">10:23</span>
+                    <div class="notification chat__message-notification">1</div>
+                </div>
+            </li>
+
+            <li class="chat chat_selected">
+                <div class="photo chat__user-photo">ИИ</div>
+                <div class="chat__preview-container">
+                    <span class="username chat__username">Иван Иванов</span>
+                    <span class="chat__preview-message">
+                        <span class="chat__preview-message_self-mark">Вы: </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem commodi consequatur
+                        consequuntur dicta eveniet facilis nihil nulla pariatur voluptas!
+                    </span>
+                </div>
+                <div class="chat__message-info">
+                    <span class="chat__message-date">02:17</span>
+                    <div class="notification chat__message-notification chat__message-notification_hidden">21</div>
+                </div>
+            </li>
+        </ul>
+    </aside>
+    <section class="chat-view">
+        <div class="chat-view__header">
+            <div class="user-info">
+                <div class="username user-info__username">Иван Иванов</div>
+                <div class="last-online-date">был(а) в сети 2 часа назад</div>
+            </div>
+            <div class="more-actions-button">
+                <img alt="Three dots" src="../sources/more.svg">
+            </div>
+        </div>
+        <div>
+            <ul class="messages">
+                <li class="message">
+                    <div class="photo message__user-photo">ИИ</div>
+                    <div class="message__cloud">
+                        <div class="message__text">Привет! Смотри, тут всплыл интересный кусок лунной космической
+                            истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов
+                            на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все
+                            тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали
+                            только кассеты с пленкой. <br><br>Хассельблад в итоге адаптировал SWC для космоса, но что-то
+                            пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук,
+                            одну из них недавно продали на аукционе за 45000 евро.
+                        </div>
+                        <div class="message__info">
+                            <div class="message__date">02:17</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="message">
+                    <div class="photo message__user-photo">ИИ</div>
+                    <div class="message__cloud">
+                        <img alt="cat" class="message__img" src="../sources/cat.png">
+                        <div class="message__info">
+                            <div class="message__date">02:19</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="message">
+                    <div class="photo message__user-photo">ТД</div>
+                    <div class="message__cloud message__cloud_self-mark">
+                        <div class="message__text">Круто!</div>
+                        <div class="message__info">
+                            <div class="message__date">02:23</div>
+                            <img alt="blue checkmark" class="message__checkmark" src="../sources/checkmark.svg">
+                        </div>
+                    </div>
+                </li>
+                <li class="message">
+                    <div class="photo message__user-photo">ТД</div>
+                    <div class="message__cloud message__cloud_self-mark">
+                        <div class="message__text">Есть еще котики?</div>
+                        <div class="message__info">
+                            <div class="message__date">02:24</div>
+                            <img alt="blue checkmark" class="message__checkmark" src="../sources/checkmark.svg">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="chat-view__footer">
+            <button class="attach-to-message"></button>
+            <input class="input-message" placeholder="Сообщение" type="text">
+            <button class="send-message"></button>
+        </div>
+    </section>
+</div>
+</body>
+</html>
