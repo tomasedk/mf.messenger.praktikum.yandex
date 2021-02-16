@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Messenger</title>
     <link href="../common.css" rel="stylesheet" type="text/css">
-    <link href="select_chat.css" rel="stylesheet" type="text/css">
+    <link href="webchat.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -16,7 +16,7 @@
                 <input class="search__input" placeholder="Поиск" type="text">
             </div>
             <nav>
-                <a class="link profile-link" href="../index.html">
+                <a class="link profile-link" href="../profile/details.html">
                     <span class="profile-link__text">Профиль</span>
                     <img class="profile-link__arrow" alt="Blue arrow" src="../sources/arrow.svg">
                 </a>
@@ -74,7 +74,7 @@
 </div>
 <script>
     Array.from(document.getElementsByClassName("chat")).forEach(msg => {
-        msg.addEventListener('click', function () { window.location.href = "../selected_chat/chat.html"; });
+        msg.addEventListener('click', function () { window.location.href = "selected.html"; });
     })
 </script>
 </body>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messenger</title>
+    <link href="../common.css" rel="stylesheet" type="text/css">
+    <link href="profile.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="profile-page">
+    <nav class="nav">
+        <a class="back-button" href="../webchat/unselected.html"></a>
+    </nav>
+    <main class="profile-page__content">
+        <div class="photo profile-page__photo">ТД</div>
+        <h1 class="profile-page__username">Тимур Д</h1>
+        <form action="#" onsubmit="return logForm(this);">
+            <div class="profile-page__details">
+                <div class="input profile-page__editing-field">
+                    <input class="input__value" id="email" name="email" placeholder=" " type="email">
+                    <label class="input__label" for="email">
+                        <span class="input__label-content-name">Почта</span>
+                    </label>
+                    <span class="input__error">Неверная почта</span>
+                </div>
+                <div class="input profile-page__editing-field">
+                    <input class="input__value" id="login" name="login" placeholder=" " type="text">
+                    <label class="input__label" for="login">
+                        <span class="input__label-content-name">Логин</span>
+                    </label>
+                    <span class="input__error">Неверный логин</span>
+                </div>
+                <div class="input profile-page__editing-field">
+                    <input class="input__value" id="first_name" name="first_name" placeholder=" " type="text">
+                    <label class="input__label" for="first_name">
+                        <span class="input__label-content-name">Имя</span>
+                    </label>
+                </div>
+                <div class="input profile-page__editing-field">
+                    <input class="input__value" id="second_name" name="second_name" placeholder=" " type="text">
+                    <label class="input__label" for="second_name">
+                        <span class="input__label-content-name">Фамилия</span>
+                    </label>
+                </div>
+                <div class="input profile-page__editing-field">
+                    <input class="input__value" id="display_name" name="display_name" placeholder=" " type="text">
+                    <label class="input__label" for="display_name">
+                        <span class="input__label-content-name">Имя в чате</span>
+                    </label>
+                </div>
+                <div class="input profile-page__editing-field">
+                    <input class="input__value" id="phone" name="phone" placeholder=" " type="tel">
+                    <label class="input__label" for="phone">
+                        <span class="input__label-content-name">Телефон</span>
+                    </label>
+                    <span class="input__error">Неверный телефон</span>
+                </div>
+            </div>
+            <div class="profile-page__actions">
+                <input class="button" type="submit" value="Сохранить">
+            </div>
+        </form>
+    </main>
+    <script>
+        function logForm(form) {
+            console.log(form.email.value);
+            console.log(form.login.value);
+            console.log(form.first_name.value);
+            console.log(form.second_name.value);
+            console.log(form.phone.value);
+            window.location.href = "details.html";
+            return false;
+        }
+    </script>
+</div>
+</body>
+</html>

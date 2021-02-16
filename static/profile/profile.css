@@ -1,0 +1,64 @@
+
+.nav {
+    position: absolute;
+    width: 64px;
+    height: 100%;
+    background-color: #343745;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid rgba(255, 255, 255, .07);
+}
+
+.back-button {
+    display: block;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background: #4a8fe7 url("../sources/arrow2.svg") no-repeat center;
+    transform: scaleX(-1);
+    background-size: 14px 14px;
+    cursor: pointer;
+}
+
+.profile-page__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.profile-page__photo {
+    width: 100px;
+    height: 100px;
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.profile-page__username {
+    font-size: 20px;
+    margin-bottom: 32px;
+}
+
+.profile-page__details {
+    width: 300px;
+    margin-bottom: 64px;
+}
+
+.profile-page__editing-field {
+    margin-bottom: 12px;
+}
+
+.profile-page__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-page__action {
+    margin-bottom: 16px;
+}

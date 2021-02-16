@@ -37,6 +37,14 @@ body {
     color: #4a8fe7;
 }
 
+.link_error {
+    color: #e35b5b;
+}
+
+.link_error:visited {
+    color: #e35b5b;
+}
+
 .header {
     font-size: 18px;
     font-weight: normal;
@@ -136,4 +144,29 @@ ul {
 
 .modal__action {
     width: 100%;
+}
+
+.photo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #e35b5b;
+    user-select: none;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding-bottom: 12px;
+}
+
+.field__name {
+    color: #838996;
+}
+
+.field__value {
+    color: #e5e5e5;
 }
