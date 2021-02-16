@@ -2,6 +2,11 @@
 
 Чат - проектная работа первого модуля курса Мидл фронтенд разработчик от Яндекс.Практикума.
 
+
+## Netlify
+
+Домен: https://app.netlify.com/sites/dazzling-sinoussi-0a0d3e/overview
+
 ## Дизайн
 [Макет в Figma](https://www.figma.com/file/1T4Vnk73ZWSzdJ2cchxeKd/Messenger)
 
