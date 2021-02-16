@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="registration-page">
+<main class="registration-page">
     <form action="#" class="registration-form" onsubmit="return logForm(this);">
         <h1 class="header registration-form__header">Регистрация</h1>
 
@@ -68,9 +68,11 @@
         </div>
 
         <input class="button registration-form__submit-button" type="submit" value="Зарегистрироваться">
-        <a class="link registration-form__register-button" href="../index.html">Войти</a>
+        <nav>
+            <a class="link registration-form__register-link" href="../index.html">Войти</a>
+        </nav>
     </form>
-</div>
+</main>
 <script>
     function logForm(form) {
         console.log(form.email.value);

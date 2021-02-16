@@ -10,7 +10,7 @@
     border-right: 1px solid rgba(255, 255, 255, .07);
 }
 
-.back-button {
+.backlink {
     display: block;
     flex-shrink: 0;
     width: 28px;
@@ -24,7 +24,7 @@
     cursor: pointer;
 }
 
-.back-button:hover {
+.backlink:hover {
     background-color: #539fff;
 }
 
