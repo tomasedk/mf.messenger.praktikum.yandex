@@ -1,0 +1,18 @@
+.fallback-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.fallback-page__header {
+    font-family: 'Fira Code', monospace;
+    font-size: 72px;
+}
+
+.fallback-page__description {
+    font-size: 24px;
+    margin-bottom: 64px;
+}
