@@ -10,11 +10,33 @@
 </head>
 <body>
 <div class="profile-page">
+    <div class="modal change-profile-photo-modal">
+        <div class="modal__content">
+            <div class="modal__header">Загрузите файл</div>
+            <form action="#" enctype="multipart/form-data" onsubmit="return logPhotoForm(this);">
+                <div class="modal__body">
+                    <input class="link change-profile-photo-modal__button modal__body-item" id="avatar" name="avatar"
+                           onchange="onPhotoSelect(this)" type="file">
+                    <label class="link change-profile-photo-modal__label modal__body-item" for="avatar">Выбрать
+                        файл</label>
+                    <span class="error modal__body-item modal__body-item_empty-file">Нужно выбрать файл</span>
+                    <span class="error modal__body-item modal__body-item_unknown">Ошибка, попробуйте ещё раз</span>
+                </div>
+                <div class="modal__footer">
+                    <input class="button modal__action" name="submit" type="submit" value="Поменять">
+                </div>
+            </form>
+        </div>
+    </div>
     <nav class="nav">
         <a class="back-button" href="../webchat/unselected.html"></a>
     </nav>
     <main class="profile-page__content">
-        <div class="photo profile-page__photo">ТД</div>
+        <div class="profile-page__photo-hover">
+            <div class="photo profile-page__photo">ТД</div>
+            <div class="profile-page__photo-hover-background"></div>
+            <span class="profile-page__change-photo">Сменить фото</span>
+        </div>
         <h1 class="profile-page__username">Тимур Д</h1>
         <form action="#" onsubmit="return logForm(this);">
             <div class="profile-page__details">
@@ -23,14 +45,14 @@
                     <label class="input__label" for="email">
                         <span class="input__label-content-name">Почта</span>
                     </label>
-                    <span class="input__error">Неверная почта</span>
+                    <span class="error input__error">Неверная почта</span>
                 </div>
                 <div class="input profile-page__editing-field">
                     <input class="input__value" id="login" name="login" placeholder=" " type="text">
                     <label class="input__label" for="login">
                         <span class="input__label-content-name">Логин</span>
                     </label>
-                    <span class="input__error">Неверный логин</span>
+                    <span class="error input__error">Неверный логин</span>
                 </div>
                 <div class="input profile-page__editing-field">
                     <input class="input__value" id="first_name" name="first_name" placeholder=" " type="text">
@@ -55,7 +77,7 @@
                     <label class="input__label" for="phone">
                         <span class="input__label-content-name">Телефон</span>
                     </label>
-                    <span class="input__error">Неверный телефон</span>
+                    <span class="error input__error">Неверный телефон</span>
                 </div>
             </div>
             <div class="profile-page__actions">
@@ -64,15 +86,68 @@
         </form>
     </main>
     <script>
+        let emptyPhotoError = document.querySelector('.modal__body-item_empty-file');
+        let unknownPhotoError = document.querySelector('.modal__body-item_unknown');
+        let changePhotoButton = document.querySelector('.profile-page__change-photo');
+        let changePhotoModal = document.querySelector('.change-profile-photo-modal');
+        let selectPhotoLabel = document.querySelector('.change-profile-photo-modal__label');
+
+        emptyPhotoError.style.display = 'none';
+        unknownPhotoError.style.display = 'none';
+        changePhotoModal.style.visibility = 'hidden';
+
+        /**
+         * Обработчик "отправки" формы новых данных.
+         */
         function logForm(form) {
             console.log(form.email.value);
             console.log(form.login.value);
             console.log(form.first_name.value);
             console.log(form.second_name.value);
             console.log(form.phone.value);
-            window.location.href = "details.html";
+            window.location.href = "edit.html";
             return false;
         }
+
+        /**
+         * Обработчик "отправки" формы новой фотографии.
+         */
+        function logPhotoForm(form) {
+            const filename = form.avatar?.files?.[0]?.name;
+
+            if (filename) {
+                if (filename === '') {
+                    unknownPhotoError.style.display = 'block';
+                } else {
+                    console.log(filename);
+                    emptyPhotoError.style.display = 'none'
+                    unknownPhotoError.style.display = 'none';
+                    window.location.href = "details.html";
+                }
+            } else {
+                emptyPhotoError.style.display = 'block';
+            }
+
+            return false;
+        }
+
+        /**
+         * Обработчик выбора файла.
+         */
+        function onPhotoSelect(input) {
+            const filename = input?.files?.[0]?.name;
+            if (filename) {
+                console.log(filename);
+                emptyPhotoError.style.display = 'none';
+                selectPhotoLabel.textContent = filename;
+            } else {
+                emptyPhotoError.style.display = 'block';
+            }
+        }
+
+        changePhotoButton.addEventListener('click', () => {
+            changePhotoModal.style.visibility = 'visible';
+        });
     </script>
 </div>
 </body>
