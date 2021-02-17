@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Messenger</title>
@@ -7,16 +7,18 @@
     <link href="profile.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script defer src="edit_profile.js" type="module"></script>
 </head>
 <body>
 <div class="profile-page">
     <div class="modal change-profile-photo-modal">
         <div class="modal__content">
             <div class="modal__header">Загрузите файл</div>
-            <form action="#" enctype="multipart/form-data" onsubmit="return logPhotoForm(this);">
+            <form action="#" class="modal__photo-form" enctype="multipart/form-data">
                 <div class="modal__body">
-                    <input class="link change-profile-photo-modal__button modal__body-item" id="avatar" name="avatar"
-                           onchange="onPhotoSelect(this)" type="file">
+                    <input class="link change-profile-photo-modal__select-photo-button modal__body-item" id="avatar"
+                           name="avatar"
+                           type="file">
                     <label class="link change-profile-photo-modal__label modal__body-item" for="avatar">Выбрать
                         файл</label>
                     <span class="error modal__body-item modal__body-item_empty-file">Нужно выбрать файл</span>
@@ -38,8 +40,8 @@
             <span class="profile-page__change-photo">Сменить фото</span>
         </div>
         <h1 class="profile-page__username">Тимур Д</h1>
-        <form action="#" onsubmit="return logForm(this);">
-            <div class="profile-page__details">
+        <form action="#" class="profile-page__form">
+            <div class="profile-page__body">
                 <div class="input profile-page__editing-field">
                     <input class="input__value" id="email" name="email" placeholder=" " type="email">
                     <label class="input__label" for="email">
@@ -85,70 +87,6 @@
             </div>
         </form>
     </main>
-    <script>
-        let emptyPhotoError = document.querySelector('.modal__body-item_empty-file');
-        let unknownPhotoError = document.querySelector('.modal__body-item_unknown');
-        let changePhotoButton = document.querySelector('.profile-page__change-photo');
-        let changePhotoModal = document.querySelector('.change-profile-photo-modal');
-        let selectPhotoLabel = document.querySelector('.change-profile-photo-modal__label');
-
-        emptyPhotoError.style.display = 'none';
-        unknownPhotoError.style.display = 'none';
-        changePhotoModal.style.visibility = 'hidden';
-
-        /**
-         * Обработчик "отправки" формы новых данных.
-         */
-        function logForm(form) {
-            console.log(form.email.value);
-            console.log(form.login.value);
-            console.log(form.first_name.value);
-            console.log(form.second_name.value);
-            console.log(form.phone.value);
-            window.location.href = "details.html";
-            return false;
-        }
-
-        /**
-         * Обработчик "отправки" формы новой фотографии.
-         */
-        function logPhotoForm(form) {
-            const filename = form.avatar?.files?.[0]?.name;
-
-            if (filename) {
-                if (filename === '') {
-                    unknownPhotoError.style.display = 'block';
-                } else {
-                    console.log(filename);
-                    emptyPhotoError.style.display = 'none'
-                    unknownPhotoError.style.display = 'none';
-                    window.location.href = "edit.html";
-                }
-            } else {
-                emptyPhotoError.style.display = 'block';
-            }
-
-            return false;
-        }
-
-        /**
-         * Обработчик выбора файла.
-         */
-        function onPhotoSelect(input) {
-            const filename = input?.files?.[0]?.name;
-            if (filename) {
-                console.log(filename);
-                emptyPhotoError.style.display = 'none';
-                selectPhotoLabel.textContent = filename;
-            } else {
-                emptyPhotoError.style.display = 'block';
-            }
-        }
-
-        changePhotoButton.addEventListener('click', () => {
-            changePhotoModal.style.visibility = 'visible';
-        });
-    </script>
 </div>
 </body>
 </html>

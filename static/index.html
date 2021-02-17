@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Messenger</title>
@@ -7,10 +7,11 @@
     <link href="login/login.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script defer src="./script.js" type="module"></script>
 </head>
 <body>
 <main class="login-page">
-    <form action="#" class="login-form" onsubmit="return logForm(this);">
+    <form action="#" class="login-form">
         <h1 class="header login-form__header">Вход</h1>
 
         <div class="input login-form__login-container">
@@ -33,13 +34,5 @@
         </nav>
     </form>
 </main>
-<script>
-    function logForm(form) {
-        console.log(form.login.value);
-        console.log(form.password.value);
-        window.location.href = "./webchat/unselected.html";
-        return false;
-    }
-</script>
 </body>
 </html>

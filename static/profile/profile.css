@@ -47,7 +47,7 @@
     margin-bottom: 32px;
 }
 
-.profile-page__details {
+.profile-page__body {
     width: 300px;
     margin-bottom: 64px;
 }
@@ -111,7 +111,7 @@
     opacity: 1;
 }
 
-.change-profile-photo-modal__button {
+.change-profile-photo-modal__select-photo-button {
     cursor: pointer;
     width: fit-content;
     display: none;
@@ -121,6 +121,6 @@
     cursor: pointer;
 }
 
-.change-profile-photo-modal__button::-webkit-file-upload-button {
+.change-profile-photo-modal__select-photo-button::-webkit-file-upload-button {
     display: none;
 }

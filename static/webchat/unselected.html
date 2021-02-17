@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Messenger</title>
@@ -7,6 +7,7 @@
     <link href="webchat.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script defer src="./redirectToSelected.js"></script>
 </head>
 <body>
 <div class="messenger">
@@ -18,7 +19,7 @@
             <nav>
                 <a class="link profile-link" href="../profile/details.html">
                     <span class="profile-link__text">Профиль</span>
-                    <img class="profile-link__arrow" alt="Blue arrow" src="../sources/arrow.svg">
+                    <img alt="Blue arrow" class="profile-link__arrow" src="../sources/arrow.svg">
                 </a>
             </nav>
         </div>
@@ -72,10 +73,5 @@
         <div class="empty-chat">Выберите чат для отправки сообщения</div>
     </main>
 </div>
-<script>
-    Array.from(document.getElementsByClassName("chat")).forEach(msg => {
-        msg.addEventListener('click', function () { window.location.href = "selected.html"; });
-    })
-</script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 
 ## Netlify
 
-Домен: https://app.netlify.com/sites/dazzling-sinoussi-0a0d3e/overview
+Домен: https://dazzling-sinoussi-0a0d3e.netlify.app/
 
 ## Дизайн
 [Макет в Figma](https://www.figma.com/file/1T4Vnk73ZWSzdJ2cchxeKd/Messenger)
