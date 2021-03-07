@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es5",
+    "declaration": false,
+    "module": "esnext",
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "lib": [
+      "es2016",
+      "dom",
+      "es5"
+    ]
+  },
+}

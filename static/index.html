@@ -3,36 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Messenger</title>
-    <link href="common.css" rel="stylesheet" type="text/css">
-    <link href="login/login.css" rel="stylesheet" type="text/css">
+    <link href="./common.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <script defer src="./script.js" type="module"></script>
 </head>
 <body>
-<main class="login-page">
-    <form action="#" class="login-form">
-        <h1 class="header login-form__header">Вход</h1>
-
-        <div class="input login-form__login-container">
-            <input class="input__value" id="login" name="login" placeholder=" " type="text">
-            <label class="input__label" for="login">
-                <span class="input__label-content-name">Логин</span>
-            </label>
-        </div>
-
-        <div class="input login-form__password-container">
-            <input class="input__value" id="password" name="password" placeholder=" " type="password">
-            <label class="input__label" for="password">
-                <span class="input__label-content-name">Пароль</span>
-            </label>
-        </div>
-
-        <input class="button login-form__submit-button" type="submit" value="Войти">
-        <nav>
-            <a class="link login-form__register-link" href="registration/registration.html">Регистрация</a>
-        </nav>
-    </form>
-</main>
+<script>
+    window.location.href = "src/pages/start/login/login.html";
+</script>
 </body>
 </html>

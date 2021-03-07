@@ -14,4 +14,10 @@
 
 Так же вдохновлялся дизайном десктопного приложения [Телеграм](https://telegram.org/)
 
-С подбором цветом помог сервис [Coolors](https://coolors.co/), а дополнительные идеи черпал в [Dribbble](https://dribbble.com/)
+С подбором цвета помог сервис [Coolors](https://coolors.co/), а дополнительные идеи черпал в [Dribbble](https://dribbble.com/)
+
+## Использованные технологии:
+
+[Шаблонизатор Handlebars](https://handlebarsjs.com/)
+
+[Typescript](https://www.typescriptlang.org/)

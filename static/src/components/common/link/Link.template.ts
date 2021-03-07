@@ -1,0 +1,1 @@
+export const templateString = `<a class="link {{additionalClasses}}" href="{{href}}">{{text}}</a>`;

@@ -20,6 +20,7 @@ body {
     font-size: 13px;
     cursor: pointer;
     outline: none;
+    width: 100%;
 }
 
 .button:active {
@@ -84,6 +85,10 @@ ul {
     display: none;
 }
 
+.input__error_visible {
+    display: inline;
+}
+
 .input__label-content-name {
     font-size: 13px;
     color: #838996;
@@ -114,6 +119,10 @@ ul {
 }
 
 .input__value:invalid ~ .input__error {
+    display: inline;
+}
+
+.input__value[invalid="true"] ~ .input__error {
     display: inline;
 }
 
