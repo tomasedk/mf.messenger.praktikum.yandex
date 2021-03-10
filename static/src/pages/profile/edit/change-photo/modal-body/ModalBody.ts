@@ -1,4 +1,4 @@
-import {Block} from "../../../../../components/common/element/Block.js";
+import {Block} from "../../../../../components/common/block/Block.js";
 import {templateString} from './ModalBody.template.js'
 
 export interface IProps {}

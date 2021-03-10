@@ -1,4 +1,4 @@
-import {Block, IBlockProps} from "../../../../../components/common/element/Block.js";
+import {Block, IBlockProps} from "../../../../../components/common/block/Block.js";
 import {PhotoBlock} from "../../../../../components/common/photo/PhotoBlock.js";
 import {templateString} from './PhotoHover.template.js'
 

@@ -1,4 +1,4 @@
-import {Block, IMeta} from "../element/Block.js";
+import {Block, IMeta} from "../block/Block.js";
 import {templateString} from './Link.template.js'
 
 interface IProps {

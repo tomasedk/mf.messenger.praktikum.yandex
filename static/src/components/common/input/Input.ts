@@ -1,4 +1,4 @@
-import {Block, IBlockProps, IMeta} from "../element/Block.js";
+import {Block, IBlockProps, IMeta} from "../block/Block.js";
 import {templateString} from './Input.template.js'
 
 interface IProps extends IBlockProps {

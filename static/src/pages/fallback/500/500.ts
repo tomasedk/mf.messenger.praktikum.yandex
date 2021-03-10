@@ -1,5 +1,5 @@
 import {FallbackPage} from '../../../components/pages/fallback/FallbackPage.js'
-import {Block} from "../../../components/common/element/Block.js";
+import {Block} from "../../../components/common/block/Block.js";
 
 const InternalServerPage = new FallbackPage({
     statusCode: 500,

@@ -1,4 +1,4 @@
-import {Block, IBlockProps} from "../element/Block.js";
+import {Block, IBlockProps} from "../block/Block.js";
 import {templateString} from './Modal.template.js'
 import {Button} from "../button/Button.js";
 import {Input} from "../input/Input.js";

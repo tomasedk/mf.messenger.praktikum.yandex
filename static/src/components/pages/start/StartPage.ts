@@ -1,4 +1,4 @@
-import {Block, IBlockProps} from "../../common/element/Block.js";
+import {Block, IBlockProps} from "../../common/block/Block.js";
 import {templateString} from './StartPage.template.js'
 import {Button} from "../../common/button/Button";
 import {Link} from "../../common/link/Link";

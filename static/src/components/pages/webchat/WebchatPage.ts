@@ -1,4 +1,4 @@
-import {Block} from "../../common/element/Block.js";
+import {Block} from "../../common/block/Block.js";
 import {templateString} from './WebchatPage.template.js'
 import {AsideBlock} from "../../blocks/aside/AsideBlock.js";
 import {Modal} from "../../common/modal/Modal.js";

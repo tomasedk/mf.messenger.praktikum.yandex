@@ -1,4 +1,5 @@
 import {EventBus} from "../../../utils/EventBus.js";
+import {getId} from "../../../utils/utils.js";
 
 export interface IMeta {
     tagName?: string;
@@ -57,8 +58,9 @@ export abstract class Block<T extends TProps> {
 
     protected constructor(meta: IMeta, props: T) {
         const eventBus = new EventBus<EVENTS, ISystemEventDataTypes<T>>();
-        // TODO: Ненадежная генерация id, необходимо использовать uuid v4
-        this._id = `id${Math.random()* 1000}`;
+
+        this._id = getId();
+
         this.meta = {
             tagName: meta.tagName || 'div',
             className: meta.className || '',
@@ -80,7 +82,6 @@ export abstract class Block<T extends TProps> {
     }
 
     public setProps = (nextProps: Partial<T>) => {
-        debugger
         if (!nextProps) {
             return;
         }
@@ -156,38 +157,34 @@ export abstract class Block<T extends TProps> {
 
     private removerEvents() {
         const events = (this.props.events || {}) as Required<EventMap>;
-        let self = this;
 
         Object.keys(events).forEach((eventName: keyof HTMLElementEventMap) => {
-            if (events[eventName] && self._element && events[eventName]) {
-                self._element.removeEventListener(eventName, events[eventName]);
+            if (events[eventName] && this._element && events[eventName]) {
+                this._element.removeEventListener(eventName, events[eventName]);
             }
         });
     }
 
     private addEvents() {
         const events = (this.props.events || {}) as Required<EventMap>;
-        let self = this;
 
         Object.keys(events).forEach((eventName: keyof HTMLElementEventMap) => {
-            if (events[eventName] && self._element && events[eventName]) {
-                self._element.addEventListener(eventName, events[eventName]);
+            if (events[eventName] && this._element && events[eventName]) {
+                this._element.addEventListener(eventName, events[eventName]);
             }
         });
     }
 
     private makePropsProxy(props: T) {
-        const self = this;
-
         return new Proxy<T>(props, {
-            get(target, prop: (string | symbol) & keyof T): T {
+            get: (target, prop: (string | symbol) & keyof T): T => {
                 const value = target[prop];
                 return typeof value === "function" ? value.bind(target) : value;
             },
-            set(target: T, prop: (string | symbol) & keyof T, value) {
+            set: (target: T, prop: (string | symbol) & keyof T, value) => {
                 target[prop] = value;
 
-                self.eventBus.emit(EVENTS.FLOW_CDU, {
+                this.eventBus.emit(EVENTS.FLOW_CDU, {
                     oldProps: {...target},
                     newProps: target,
                 });

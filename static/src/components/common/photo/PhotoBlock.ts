@@ -1,4 +1,4 @@
-import {Block} from "../element/Block.js";
+import {Block} from "../block/Block.js";
 import {templateString} from './PhotoBlock.template.js'
 
 interface IProps {

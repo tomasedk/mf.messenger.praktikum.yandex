@@ -1,4 +1,4 @@
-import {Block, IBlockProps} from "../../common/element/Block.js";
+import {Block, IBlockProps} from "../../common/block/Block.js";
 import {templateString} from './ProfilePage.template.js'
 import {FieldsBlock} from "../../blocks/fields/FieldsBlock.js";
 import {PhotoBlock} from "../../common/photo/PhotoBlock.js";

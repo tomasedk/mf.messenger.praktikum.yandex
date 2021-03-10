@@ -1,4 +1,4 @@
-import {Block, IBlockProps} from "../../common/element/Block.js";
+import {Block, IBlockProps} from "../../common/block/Block.js";
 import {templateString} from './ChatViewBlock.template.js'
 import {MessagesContainer} from "./messages-container/MessagesContainer.js";
 

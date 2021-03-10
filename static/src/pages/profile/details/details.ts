@@ -1,4 +1,4 @@
-import {Block} from "../../../components/common/element/Block.js";
+import {Block} from "../../../components/common/block/Block.js";
 import {PhotoBlock} from "../../../components/common/photo/PhotoBlock.js";
 import {ProfilePage} from "../../../components/pages/profile/ProfilePage.js";
 import {Link} from "../../../components/common/link/Link.js";

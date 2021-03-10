@@ -1,1 +1,1 @@
-export const templateString = `<input class="button {{additionalClasses}}" name="{{name}}" type="submit" value="{{value}}">`
+export const templateString = `<button class="button">{{value}}</button>`

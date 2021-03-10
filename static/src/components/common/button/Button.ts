@@ -1,10 +1,8 @@
-import {Block, IBlockProps, IMeta} from "../element/Block.js";
+import {Block, IBlockProps, IMeta} from "../block/Block.js";
 import {templateString} from './Button.template.js'
 
 interface IProps extends IBlockProps {
     value: string,
-    additionalClasses?: string,
-    name?: string,
 }
 
 export class Button extends Block<IProps> {
@@ -13,9 +11,9 @@ export class Button extends Block<IProps> {
     }
 
     render() {
-        const {additionalClasses, name, value} = this.props;
+        const {value} = this.props;
         const template = (window as any).Handlebars.compile(templateString);
-        const context = {additionalClasses, name, value};
+        const context = {value};
 
         return template(context);
     }

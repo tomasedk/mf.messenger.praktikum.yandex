@@ -1,5 +1,5 @@
 import {WebchatPage} from "../../../components/pages/webchat/WebchatPage.js";
-import {Block} from "../../../components/common/element/Block.js";
+import {Block} from "../../../components/common/block/Block.js";
 import {PhotoBlock} from "../../../components/common/photo/PhotoBlock.js";
 import {ChatBlock} from "../../../components/blocks/aside/chats-container/chat-preview/ChatBlock.js";
 import {AsideBlock} from "../../../components/blocks/aside/AsideBlock.js";

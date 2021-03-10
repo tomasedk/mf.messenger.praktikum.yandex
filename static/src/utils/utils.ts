@@ -5,7 +5,7 @@ type TLog = {
 export function logFields(form: HTMLFormElement) {
     const data = Array.from(form?.elements)?.reduce((acc, {name, value}: HTMLInputElement) => {
         if (name) {
-            acc.name = value;
+            acc[name] = value;
         }
         return acc;
     }, {} as TLog)
@@ -60,4 +60,11 @@ export function validateForm(form: HTMLFormElement) {
                 elem.setAttribute("invalid", "true");
             }
         })
+}
+
+/**
+ * Примитивная генерация id, основанная на Web Crypto API.
+ */
+export function getId(): string {
+    return window.crypto.getRandomValues(new Uint32Array(1))[0].toString(16);
 }

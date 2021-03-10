@@ -1,4 +1,4 @@
-import {Block} from "../../../components/common/element/Block.js";
+import {Block} from "../../../components/common/block/Block.js";
 import {ProfilePage} from "../../../components/pages/profile/ProfilePage.js";
 import {Link} from "../../../components/common/link/Link.js";
 import {Input} from "../../../components/common/input/Input.js";
@@ -12,23 +12,33 @@ const ProfileDetailsPage = new ProfilePage({
     username: 'Тимур Д',
     events: {
         submit: function (e) {
-            const form = Array.from(this.querySelectorAll('form'))?.filter(form => form.classList?.contains('profile-page__form'))[0];
-            if (form) {
-                logFields(form);
-                if (isFormValid(form)) {
-                    window.location.href = "../details/details.html";
-                }
-                e.preventDefault();
+            const form = Array.from(this.querySelectorAll('form'))
+                ?.filter(form => form.classList
+                ?.contains('profile-page__form'))[0];
+            if (!form) {
+                return;
             }
+
+            logFields(form);
+            if (isFormValid(form)) {
+                window.location.href = "../details/details.html";
+            }
+            e.preventDefault();
         },
         focusout: function (_event: FocusEvent) {
-            const form = Array.from(this.querySelectorAll('form'))?.filter(form => form.classList?.contains('profile-page__form'))[0];
+            const form = Array.from(this.querySelectorAll('form'))
+                ?.filter(form => form.classList
+                ?.contains('profile-page__form'))[0];
+
             if (form) {
                 validateForm(form);
             }
         },
         focusin: function (_event: FocusEvent) {
-            const form = Array.from(this.querySelectorAll('form'))?.filter(form => form.classList?.contains('profile-page__form'))[0];
+            const form = Array.from(this.querySelectorAll('form'))
+                ?.filter(form => form.classList
+                ?.contains('profile-page__form'))[0];
+
             if (form) {
                 validateForm(form);
             }

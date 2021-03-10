@@ -2,7 +2,7 @@ import {StartPage} from '../../../components/pages/start/StartPage.js'
 import {Input} from "../../../components/common/input/Input.js";
 import {Button} from "../../../components/common/button/Button.js";
 import {Link} from "../../../components/common/link/Link.js";
-import {Block} from "../../../components/common/element/Block.js";
+import {Block} from "../../../components/common/block/Block.js";
 import {isFormValid, validateForm, logFields} from "../../../utils/utils.js";
 import {FieldsBlock} from "../../../components/blocks/fields/FieldsBlock.js";
 
@@ -14,13 +14,15 @@ const LoginPage = new StartPage({
     events: {
         submit: function (e) {
             const form = this.querySelector('form');
-            if (form) {
-                logFields(form);
-                if (isFormValid(form)) {
-                    window.location.href = "../../webchat/unselected/unselected.html";
-                }
-                e.preventDefault();
+            if (!form) {
+                return;
             }
+
+            logFields(form);
+            if (isFormValid(form)) {
+                window.location.href = "../../webchat/unselected/unselected.html";
+            }
+            e.preventDefault();
         },
         focusout: function (_event: FocusEvent) {
             const form = this.querySelector('form');

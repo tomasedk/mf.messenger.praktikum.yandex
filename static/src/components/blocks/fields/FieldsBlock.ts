@@ -1,4 +1,4 @@
-import {Block, IBlockProps, IMeta} from "../../common/element/Block.js";
+import {Block, IBlockProps, IMeta} from "../../common/block/Block.js";
 import {templateString} from './FieldsBlock.template.js'
 
 export class FieldsBlock extends Block<IBlockProps> {

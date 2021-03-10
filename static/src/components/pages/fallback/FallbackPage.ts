@@ -1,4 +1,4 @@
-import {Block} from "../../common/element/Block.js";
+import {Block} from "../../common/block/Block.js";
 import {templateString} from './FallbackPage.template.js'
 
 export interface IProps {
