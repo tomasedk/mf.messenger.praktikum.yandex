@@ -3,7 +3,11 @@ import {PhotoBlock} from "../../../../../components/common/photo/PhotoBlock.js";
 import {templateString} from './PhotoHover.template.js'
 
 export interface IProps extends IBlockProps {
-    children: [PhotoBlock]
+    children: [PhotoBlock];
+}
+
+interface IContextTemplate {
+    photo: string;
 }
 
 export class PhotoHover extends Block<IProps> {
@@ -12,7 +16,7 @@ export class PhotoHover extends Block<IProps> {
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
         return template({
             photo: this.props.children?.[0].getId(),
         });

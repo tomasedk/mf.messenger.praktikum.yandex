@@ -6,13 +6,17 @@ export interface IProps extends IBlockProps {
     children: Message[];
 }
 
+interface IContextTemplate {
+    messages: string[];
+}
+
 export class MessagesContainer extends Block<IProps> {
     constructor(props: IProps) {
         super({tagName: "div"}, props);
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
         const context = {
             messages: this.props.children?.map(child => child.getId())

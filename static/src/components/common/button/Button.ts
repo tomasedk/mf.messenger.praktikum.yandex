@@ -2,7 +2,11 @@ import {Block, IBlockProps, IMeta} from "../block/Block.js";
 import {templateString} from './Button.template.js'
 
 interface IProps extends IBlockProps {
-    value: string,
+    value: string;
+}
+
+interface IContextTemplate {
+    value: string;
 }
 
 export class Button extends Block<IProps> {
@@ -12,7 +16,7 @@ export class Button extends Block<IProps> {
 
     render() {
         const {value} = this.props;
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
         const context = {value};
 
         return template(context);

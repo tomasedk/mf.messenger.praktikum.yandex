@@ -2,9 +2,15 @@ import {Block, IMeta} from "../block/Block.js";
 import {templateString} from './Link.template.js'
 
 interface IProps {
-    additionalClasses: string,
-    href: string,
-    text: string,
+    additionalClasses: string;
+    href: string;
+    text: string;
+}
+
+interface IContextTemplate {
+    additionalClasses: string;
+    href: string;
+    text: string;
 }
 
 export class Link extends Block<IProps> {
@@ -14,7 +20,7 @@ export class Link extends Block<IProps> {
 
     render() {
         const {additionalClasses, href, text} = this.props;
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
         const context = {additionalClasses, href, text};
 
         return template(context);

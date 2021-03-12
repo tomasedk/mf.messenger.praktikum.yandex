@@ -5,13 +5,20 @@ import {Link} from "../../common/link/Link";
 import {FieldsBlock} from "../../blocks/fields/FieldsBlock.js";
 
 interface IHeader {
-    text: string,
-    classModificator: string,
+    text: string;
+    classModificator: string;
 }
 
 export interface IProps extends IBlockProps {
-    header: IHeader,
-    children: [FieldsBlock, Button, Link]
+    header: IHeader;
+    children: [FieldsBlock, Button, Link];
+}
+
+interface IContextTemplate {
+    header: IHeader;
+    fields: string;
+    submitButtonId: string;
+    linkId: string;
 }
 
 export class StartPage extends Block<IProps> {
@@ -20,7 +27,7 @@ export class StartPage extends Block<IProps> {
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
         const context = {
             header: this.props.header,

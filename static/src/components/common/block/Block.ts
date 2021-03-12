@@ -21,13 +21,13 @@ enum EVENTS {
  * Типизация данных, передаваемый для соответствующих типов сообщений.
  */
 export interface ISystemEventDataTypes<T> {
-    [EVENTS.INIT]: never,
-    [EVENTS.FLOW_CDM]: never,
+    [EVENTS.INIT]: never;
+    [EVENTS.FLOW_CDM]: never;
     [EVENTS.FLOW_CDU]: {
         oldProps: T,
         newProps: T,
-    },
-    [EVENTS.FLOW_RENDER]: never,
+    };
+    [EVENTS.FLOW_RENDER]: never;
 }
 
 export type EventMap = {

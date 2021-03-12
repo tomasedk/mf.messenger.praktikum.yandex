@@ -6,13 +6,17 @@ export interface IProps extends IBlockProps {
     children: ChatBlock[];
 }
 
+interface IContextTemplate {
+    chats: string[];
+}
+
 export class ChatsContainer extends Block<IProps> {
     constructor(props: IProps) {
         super({tagName: "ul", className: "sidebar__body"}, props);
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
         const context = {
             chats: this.props.children?.map(child => child.getId())

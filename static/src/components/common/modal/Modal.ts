@@ -5,10 +5,18 @@ import {Input} from "../input/Input.js";
 import {ModalBody} from "../../../pages/profile/edit/change-photo/modal-body/ModalBody.js";
 
 interface IProps extends IBlockProps {
-    title: string,
-    formClass: string,
-    additionalClasses: string,
-    children: [Button, Input | ModalBody],
+    title: string;
+    formClass: string;
+    additionalClasses: string;
+    children: [Button, Input | ModalBody];
+}
+
+interface IContextTemplate {
+    additionalClasses: string;
+    title: string;
+    footer: string;
+    body: string;
+    formClass: string;
 }
 
 export class Modal extends Block<IProps> {
@@ -17,7 +25,7 @@ export class Modal extends Block<IProps> {
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
         const context = {
             additionalClasses: this.props.additionalClasses,

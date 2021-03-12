@@ -3,12 +3,21 @@ import {templateString} from './Message.template.js'
 import {PhotoBlock} from "../../../../common/photo/PhotoBlock.js";
 
 interface IProps extends IBlockProps {
-    isYourMsg: boolean,
-    msgText: string,
-    msgDate: string,
-    isRead: boolean,
-    attachedImg?: boolean,
-    children: [PhotoBlock],
+    isYourMsg: boolean;
+    msgText: string;
+    msgDate: string;
+    isRead: boolean;
+    attachedImg?: boolean;
+    children: [PhotoBlock];
+}
+
+interface IContextTemplate {
+    isYourMsg: boolean;
+    msgText: string;
+    msgDate: string;
+    isRead: boolean;
+    attachedImg?: boolean;
+    photo: string;
 }
 
 export class Message extends Block<IProps> {
@@ -25,7 +34,7 @@ export class Message extends Block<IProps> {
             msgDate,
             isRead,
         } = this.props;
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
         const context = {
             photo: children[0]?.getId(),

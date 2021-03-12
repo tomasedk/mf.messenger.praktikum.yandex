@@ -3,13 +3,18 @@ import {templateString} from './ChatViewBlock.template.js'
 import {MessagesContainer} from "./messages-container/MessagesContainer.js";
 
 interface IHeader {
-    username: string,
-    onlineTimeAgo: string
+    username: string;
+    onlineTimeAgo: string;
 }
 
 interface IProps extends IBlockProps {
-    header: IHeader,
-    children: [MessagesContainer],
+    header: IHeader;
+    children: [MessagesContainer];
+}
+
+interface IContextTemplate {
+    header: IHeader;
+    messages: string;
 }
 
 export class ChatViewBlock extends Block<IProps> {
@@ -18,7 +23,7 @@ export class ChatViewBlock extends Block<IProps> {
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
         const context = {
             header: this.props.header,

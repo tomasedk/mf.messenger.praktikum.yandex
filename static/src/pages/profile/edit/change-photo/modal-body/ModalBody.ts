@@ -9,7 +9,7 @@ export class ModalBody extends Block<IProps> {
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<void>(templateString);
         return template();
     }
 }

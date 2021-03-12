@@ -5,7 +5,13 @@ import {Modal} from "../../common/modal/Modal.js";
 import {ChatViewBlock} from "../../blocks/chat-view/ChatViewBlock.js";
 
 export interface IProps {
-    children: [AsideBlock, Modal?, ChatViewBlock?]
+    children: [AsideBlock, Modal?, ChatViewBlock?];
+}
+
+interface IContextTemplate {
+    aside: string;
+    modal?: string;
+    selectedChat?: string;
 }
 
 export class WebchatPage extends Block<IProps> {
@@ -14,7 +20,7 @@ export class WebchatPage extends Block<IProps> {
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
         const context = {
             aside: this.props.children[0]?.getId(),

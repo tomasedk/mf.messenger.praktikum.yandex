@@ -1,8 +1,13 @@
 import {Block} from "../../common/block/Block.js";
-import {templateString} from './FallbackPage.template.js'
+import {templateString} from './FallbackPage.template.js';
 
 export interface IProps {
-    statusCode: number,
+    statusCode: number;
+    desc: string;
+}
+
+interface IContextTemplate {
+    statusCode: number;
     desc: string;
 }
 
@@ -12,10 +17,10 @@ export class FallbackPage extends Block<IProps> {
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
         const context = {
             statusCode: this.props.statusCode,
-            desc: this.props.desc
+            desc: this.props.desc,
         }
         return template(context);
     }

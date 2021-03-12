@@ -2,8 +2,13 @@ import {Block} from "../block/Block.js";
 import {templateString} from './Field.template.js'
 
 interface IProps {
-    name: string,
-    value: string,
+    name: string;
+    value: string;
+}
+
+interface IContextTemplate {
+    name: string;
+    value: string;
 }
 
 export class Field extends Block<IProps> {
@@ -13,7 +18,7 @@ export class Field extends Block<IProps> {
 
     render() {
         const {name, value} = this.props;
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
         const context = {name, value};
 
         return template(context);

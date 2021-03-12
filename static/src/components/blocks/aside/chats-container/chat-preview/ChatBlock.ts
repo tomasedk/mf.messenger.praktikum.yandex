@@ -3,13 +3,24 @@ import {templateString} from './ChatBlock.template.js'
 import {PhotoBlock} from "../../../../common/photo/PhotoBlock.js";
 
 export interface IProps extends IBlockProps {
-    isSelected: boolean,
+    isSelected: boolean;
     newMsgsCount: number;
     msgDate: string;
-    msgText: string,
-    fullName: string,
-    isYourLastMsg?: boolean,
-    children: [PhotoBlock],
+    msgText: string;
+    fullName: string;
+    isYourLastMsg?: boolean;
+    children: [PhotoBlock];
+}
+
+interface IContextTemplate {
+    isSelected: boolean;
+    photo: string;
+    fullName: string;
+    isYourLastMsg?: boolean;
+    msgDate: string;
+    msgText: string;
+    newMsgsCount: number;
+    noNewMsgs: boolean;
 }
 
 export class ChatBlock extends Block<IProps> {
@@ -27,7 +38,7 @@ export class ChatBlock extends Block<IProps> {
             msgDate,
             newMsgsCount
         } = this.props;
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
         const context = {
             isSelected,

@@ -2,8 +2,12 @@ import {Block} from "../block/Block.js";
 import {templateString} from './PhotoBlock.template.js'
 
 interface IProps {
-    additionalClasses: string,
-    initials: string,
+    additionalClasses: string;
+    initials: string;
+}
+
+interface IContextTemplate {
+    initials: string;
 }
 
 export class PhotoBlock extends Block<IProps> {
@@ -12,7 +16,7 @@ export class PhotoBlock extends Block<IProps> {
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
         const context = {
             initials: this.props.initials,

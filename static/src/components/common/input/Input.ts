@@ -2,11 +2,19 @@ import {Block, IBlockProps, IMeta} from "../block/Block.js";
 import {templateString} from './Input.template.js'
 
 interface IProps extends IBlockProps {
-    id: string,
-    type: string,
-    label: string,
-    additionalClasses?: string,
-    error?: string,
+    id: string;
+    type: string;
+    label: string;
+    additionalClasses?: string;
+    error?: string;
+}
+
+interface IContextTemplate {
+    additionalClasses: string;
+    id: string;
+    type: string;
+    label: string;
+    error?: string;
 }
 
 export class Input extends Block<IProps> {
@@ -15,7 +23,7 @@ export class Input extends Block<IProps> {
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
         const context = {
             additionalClasses: this.props.additionalClasses || '',
             id: this.props.id,

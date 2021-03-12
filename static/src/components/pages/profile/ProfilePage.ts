@@ -7,9 +7,19 @@ import {Link} from "../../common/link/Link.js";
 import {Modal} from "../../common/modal/Modal.js";
 
 export interface IProps extends IBlockProps {
-    isEdit: boolean,
-    username: string,
-    children: [FieldsBlock, PhotoBlock | PhotoHover, Link, FieldsBlock, Modal?]
+    isEdit: boolean;
+    username: string;
+    children: [FieldsBlock, PhotoBlock | PhotoHover, Link, FieldsBlock, Modal?];
+}
+
+interface IContextTemplate {
+    username: string;
+    isEdit: boolean;
+    backlink: string;
+    photo: string;
+    fields: string;
+    actions: string;
+    modal?: string;
 }
 
 export class ProfilePage extends Block<IProps> {
@@ -18,7 +28,7 @@ export class ProfilePage extends Block<IProps> {
     }
 
     render() {
-        const template = (window as any).Handlebars.compile(templateString);
+        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
         const context = {
             username: this.props.username,
