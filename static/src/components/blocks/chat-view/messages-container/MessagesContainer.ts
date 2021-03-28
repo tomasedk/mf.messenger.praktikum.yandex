@@ -3,11 +3,12 @@ import {templateString} from './MessagesContainer.template.js'
 import {Message} from "./message/Message.js";
 
 export interface IProps extends IBlockProps {
-    children: Message[];
+    children?: Message[];
+    chatId?: number;
 }
 
 interface IContextTemplate {
-    messages: string[];
+    messages?: string[];
 }
 
 export class MessagesContainer extends Block<IProps> {

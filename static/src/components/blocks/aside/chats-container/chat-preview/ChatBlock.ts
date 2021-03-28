@@ -1,8 +1,10 @@
 import {Block, IBlockProps} from "../../../../common/block/Block.js";
 import {templateString} from './ChatBlock.template.js'
 import {PhotoBlock} from "../../../../common/photo/PhotoBlock.js";
+import {Store} from "../../../../../utils/Store.js";
+import {IChat} from "../../../../../models.js";
 
-export interface IProps extends IBlockProps {
+export interface IChatBlockProps extends IBlockProps {
     isSelected: boolean;
     newMsgsCount: number;
     msgDate: string;
@@ -10,6 +12,7 @@ export interface IProps extends IBlockProps {
     fullName: string;
     isYourLastMsg?: boolean;
     children: [PhotoBlock];
+    id?: number;
 }
 
 interface IContextTemplate {
@@ -23,9 +26,28 @@ interface IContextTemplate {
     noNewMsgs: boolean;
 }
 
-export class ChatBlock extends Block<IProps> {
-    constructor(props: IProps) {
+let store = new Store();
+
+export class ChatBlock extends Block<IChatBlockProps> {
+    constructor(props: IChatBlockProps) {
         super({tagName: "li", className: props.isSelected ? 'chat chat_selected' : 'chat'}, props);
+    }
+
+    componentDidMount() {
+        const that = this;
+        this.props.events = {
+            click: function (_e) {
+                let chats: IChat[] = store.getValue('chats');
+
+                chats.forEach(chat => {
+                    chat.isSelected = chat.id === that.props.id;
+                    return chat;
+                });
+
+                // TODO: Такой хак сделан для того, чтобы триггернуть событие уведомления подписчиков.
+                store.setValue('chats', chats);
+            }
+        }
     }
 
     render() {

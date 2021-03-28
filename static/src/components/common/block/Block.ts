@@ -1,19 +1,23 @@
 import {EventBus} from "../../../utils/EventBus.js";
-import {getId} from "../../../utils/utils.js";
+import {getId} from "../../../utils/getId.js";
 
 export interface IMeta {
-    tagName?: string;
+    tagName?: keyof HTMLElementTagNameMap;
     className?: string;
+    extraAttributes?: {
+        [key: string]: string;
+    }
 }
 
 interface IMetaPrivate extends IMeta {
-    tagName: string;
+    tagName: keyof HTMLElementTagNameMap;
+    className: string;
 }
 
 enum EVENTS {
     INIT = "init",
     FLOW_CDM = "flow:component-did-mount",
-    FLOW_CDU = "flow:component-did-update",
+    FLOW_SCU = "flow:should-component-update",
     FLOW_RENDER = "flow:render",
 }
 
@@ -23,7 +27,7 @@ enum EVENTS {
 export interface ISystemEventDataTypes<T> {
     [EVENTS.INIT]: never;
     [EVENTS.FLOW_CDM]: never;
-    [EVENTS.FLOW_CDU]: {
+    [EVENTS.FLOW_SCU]: {
         oldProps: T,
         newProps: T,
     };
@@ -47,6 +51,7 @@ export abstract class Block<T extends TProps> {
         if (block && root) {
             root.appendChild(block.element);
         }
+        return root;
     }
 
     private readonly meta: IMetaPrivate;
@@ -66,6 +71,10 @@ export abstract class Block<T extends TProps> {
             className: meta.className || '',
         };
 
+        if (meta.extraAttributes) {
+            this.meta.extraAttributes = meta.extraAttributes;
+        }
+
         this.props = this.makePropsProxy(props);
 
         this.eventBus = eventBus;
@@ -77,7 +86,7 @@ export abstract class Block<T extends TProps> {
     protected registerEvents() {
         this.eventBus.on(EVENTS.INIT, this.init.bind(this));
         this.eventBus.on(EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-        this.eventBus.on(EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+        this.eventBus.on(EVENTS.FLOW_SCU, this._shouldComponentUpdate.bind(this));
         this.eventBus.on(EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
@@ -90,9 +99,7 @@ export abstract class Block<T extends TProps> {
     };
 
     protected createResources() {
-        const {tagName, className} = this.meta;
-
-        this._element = this.createDocumentElement(tagName, className);
+        this._element = this.createDocumentElement(this.meta);
     }
 
     private init() {
@@ -108,20 +115,32 @@ export abstract class Block<T extends TProps> {
     protected componentDidMount(_oldProps: T) {
     }
 
-    private _componentDidUpdate(oldProps: T, newProps: T) {
-        const response = this.componentDidUpdate(oldProps, newProps);
+    private _shouldComponentUpdate(oldProps: T, newProps: T) {
+        const response = this.shouldComponentUpdate(oldProps, newProps);
         if (!response) {
             return;
         }
         this._render();
     }
 
-    protected componentDidUpdate(_oldProps: T, _newProps: T) {
+    protected shouldComponentUpdate(_oldProps: T, _newProps: T) {
         return true;
     }
 
     get element() {
         return this._element;
+    }
+
+    getContent() {
+        return this.element;
+    }
+
+    public hide(rootQuery: string) {
+        const content = this.getContent();
+        const root = document.querySelector(rootQuery);
+        if (root && content) {
+            root.removeChild(content);
+        }
     }
 
     public getId(): string {
@@ -182,10 +201,11 @@ export abstract class Block<T extends TProps> {
                 return typeof value === "function" ? value.bind(target) : value;
             },
             set: (target: T, prop: (string | symbol) & keyof T, value) => {
+                const oldProps = {...target}
                 target[prop] = value;
 
-                this.eventBus.emit(EVENTS.FLOW_CDU, {
-                    oldProps: {...target},
+                this.eventBus.emit(EVENTS.FLOW_SCU, {
+                    oldProps,
                     newProps: target,
                 });
                 return true;
@@ -196,11 +216,16 @@ export abstract class Block<T extends TProps> {
         });
     }
 
-    private createDocumentElement(tagName: string, className: string | undefined) {
+    private createDocumentElement({tagName, className, extraAttributes}: IMetaPrivate) {
         let elem = document.createElement(tagName);
 
         if (className) {
             elem.className = className;
+        }
+        if (extraAttributes) {
+            Object.entries(extraAttributes).forEach(([key, value]) => {
+                (elem as any)[key] = value;
+            })
         }
         return elem;
     }

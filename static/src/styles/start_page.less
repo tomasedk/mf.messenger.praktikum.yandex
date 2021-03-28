@@ -1,0 +1,49 @@
+@import "variables";
+
+.start-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.start-form {
+    padding: 44px 52px 36px;
+    height: fit-content;
+    width: 320px;
+    border-radius: 10px;
+    background-color: @color-dark-2;
+    box-shadow: 0 0 10px @color-black-a1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__header {
+        width: 100%;
+
+        &_logon {
+            margin-bottom: 36px;
+        }
+
+        &_login {
+            margin-bottom: 68px;
+        }
+    }
+
+
+    &__fields {
+        width: 100%;
+        margin-bottom: 52px;
+    }
+
+    &__field {
+        margin-bottom: 16px;
+    }
+
+    &__submit-button {
+        margin-bottom: 16px;
+        width: 100%;
+    }
+}
+

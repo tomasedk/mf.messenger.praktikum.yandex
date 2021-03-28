@@ -21,6 +21,6 @@ export const templateString = `<main class="chat-view">
         </ul>
         <button class="attach-to-message"></button>
         <input class="input-message" placeholder="Сообщение" type="text">
-        <button class="send-message"></button>
+        <button class="round-button round-button__send"></button>
     </div>
 </main>`
