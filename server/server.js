@@ -16,7 +16,6 @@ app.use(function (req, res) {
     res.sendFile(staticPathIndex);
 });
 
-
 app.listen(PORT, 'localhost', () => {
     console.log(`Server is listening on ${PORT} port...`);
 })

@@ -8,7 +8,7 @@
 const svgLoader = () => ({
     loader: "file-loader",
     options: {
-        outputPath: '[ext]'
+        outputPath: 'svg/'
     }
 });
 
