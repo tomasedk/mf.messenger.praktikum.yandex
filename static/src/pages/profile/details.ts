@@ -1,9 +1,9 @@
-import {PhotoBlock} from "../../components/common/photo/PhotoBlock.js";
-import {Link} from "../../components/common/link/Link.js";
-import {FieldsBlock} from "../../components/blocks/fields/FieldsBlock.js";
-import {router, ROUTES} from "../../utils/Router.js";
-import {DetailsBlock} from "./Details/details_block.js";
-import {LoginController} from "../../controllers/loginController.js";
+import {PhotoBlock} from "../../components/common/photo/PhotoBlock";
+import {Link} from "../../components/common/link/Link";
+import {FieldsBlock} from "../../components/blocks/fields/FieldsBlock";
+import {router, ROUTES} from "../../utils/Router";
+import {DetailsBlock} from "./Details/details_block";
+import {LoginController} from "../../controllers/loginController";
 
 const loginController = new LoginController();
 

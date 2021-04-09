@@ -1,5 +1,5 @@
-import {IAddUserData, IChangePasswordReqParams, IEditProfileReq, ILoginData, ILogonData, IUser} from "./models.js";
-import {TLog} from "./utils/formUtils.js";
+import {IAddUserData, IChangePasswordReqParams, IEditProfileReq, ILoginData, ILogonData, IUser} from "./models";
+import {TLog} from "./utils/formUtils";
 
 export const addUserTypeGuard = (data: TLog): data is TLog & IAddUserData => {
     return typeof data.login === 'string';

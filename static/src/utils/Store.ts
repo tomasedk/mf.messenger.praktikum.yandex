@@ -1,6 +1,6 @@
-import {EventBus} from "./EventBus.js";
-import {set} from "./set.js";
-import {get} from "./get.js";
+import {EventBus} from "./EventBus";
+import {set} from "./set";
+import {get} from "./get";
 import {IChat, IUser} from "../models";
 
 enum EVENTS {
@@ -20,6 +20,7 @@ export interface ISystemEventDataTypes<_T> {
 interface IStore {
     chats: IChat[];
     user?: IUser;
+    messages: any;
 }
 
 export class Store {
@@ -35,6 +36,7 @@ export class Store {
         this.eventBus = new EventBus<EVENTS, ISystemEventDataTypes<any>>();
         this.store = {
             chats: [],
+            messages: [],
         };
 
         Store.instance = this;

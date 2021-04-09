@@ -1,5 +1,6 @@
-import {Block, IBlockProps, IMeta} from "../block/Block.js";
-import {templateString} from './Input.template.js'
+import {Block, IBlockProps, IMeta} from "../block/Block";
+import {templateString} from './Input.template';
+import {compile} from "handlebars";
 
 interface IProps extends IBlockProps {
     id: string;
@@ -23,15 +24,12 @@ export class Input extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             additionalClasses: this.props.additionalClasses || '',
             id: this.props.id,
             type: this.props.type,
             label: this.props.label,
             error: this.props.error,
-        }
-
-        return template(context);
+        });
     }
 }

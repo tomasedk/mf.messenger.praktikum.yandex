@@ -1,6 +1,7 @@
-import {Block} from "../../../components/common/block/Block.js";
-import {templateString} from "../../../components/blocks/fields/FieldsBlock.template.js";
-import {Input} from "../../../components/common/input/Input.js";
+import {Block} from "../../../components/common/block/Block";
+import {templateString} from "../../../components/blocks/fields/FieldsBlock.template";
+import {Input} from "../../../components/common/input/Input";
+import {compile} from "handlebars";
 
 interface IProps {
     children: Input[];
@@ -40,11 +41,8 @@ export class EditPassword extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             fields: this.props.children?.map((child: Input) => child.getId()),
-        }
-        return template(context);
+        });
     }
 }

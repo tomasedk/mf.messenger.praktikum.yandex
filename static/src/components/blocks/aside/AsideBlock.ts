@@ -1,8 +1,9 @@
-import {Block, IBlockProps} from "../../common/block/Block.js";
-import {templateString} from './AsideBlock.template.js'
-import {ChatsContainer} from "./chats-container/ChatsContainer.js";
-import {Link} from "../../common/link/Link.js";
-import {WebchatController} from "../../../controllers/webchatController.js";
+import {Block, IBlockProps} from "../../common/block/Block";
+import {templateString} from './AsideBlock.template';
+import {ChatsContainer} from "./chats-container/ChatsContainer";
+import {Link} from "../../common/link/Link";
+import {WebchatController} from "../../../controllers/webchatController";
+import {compile} from "handlebars";
 
 export interface IProps extends IBlockProps {
     children: [Link, ChatsContainer];
@@ -38,12 +39,11 @@ export class AsideBlock extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-
         const context = {
             profileLink: this.props.children?.[0].getId(),
             body: this.props.children?.[1].getId(),
         }
-        return template(context);
+
+        return compile<IContextTemplate>(templateString)(context);
     }
 }

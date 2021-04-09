@@ -1,5 +1,5 @@
-import {isEqual} from './isEqual.js';
-import {Block} from "../components/common/block/Block.js";
+import {isEqual} from './isEqual';
+import {Block} from "../components/common/block/Block";
 
 export const ROUTES = {
     START: {

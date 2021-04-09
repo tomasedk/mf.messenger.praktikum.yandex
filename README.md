@@ -25,3 +25,7 @@
 [Typescript](https://www.typescriptlang.org/)
 
 [Less](http://lesscss.org/)
+
+Обновите README.md, а именно информацию о функционале и использованных инструментах. Также укажите, как именно можно запустить тесты.
+
+Концепция конфига вебпака была взята из [доклада Олега Бунина](https://habr.com/ru/company/oleg-bunin/blog/433324/).

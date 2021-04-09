@@ -1,9 +1,10 @@
-import {Block} from "../../../components/common/block/Block.js";
-import {templateString} from "../../../components/blocks/fields/FieldsBlock.template.js";
-import {Field} from "../../../components/common/field/Field.js";
-import {Store} from "../../../utils/Store.js";
-import {LoginController} from "../../../controllers/loginController.js";
-import {IUser} from "../../../models.js";
+import {Block} from "../../../components/common/block/Block";
+import {templateString} from "../../../components/blocks/fields/FieldsBlock.template";
+import {Field} from "../../../components/common/field/Field";
+import {Store} from "../../../utils/Store";
+import {LoginController} from "../../../controllers/loginController";
+import {IUser} from "../../../models";
+import {compile} from "handlebars";
 
 interface IProps {
     children?: Field[];
@@ -41,12 +42,8 @@ export class DetailsBlock extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             fields: this.props.children?.map((child: Field) => child.getId()),
-        }
-
-        return template(context);
+        })
     }
 }

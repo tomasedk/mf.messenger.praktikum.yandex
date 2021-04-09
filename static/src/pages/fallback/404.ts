@@ -1,5 +1,5 @@
-import {Link} from "../../components/common/link/Link.js";
-import {router} from "../../utils/Router.js";
+import {Link} from "../../components/common/link/Link";
+import {router} from "../../utils/Router";
 
 export const notFoundProps = {
     statusCode: '4XX',

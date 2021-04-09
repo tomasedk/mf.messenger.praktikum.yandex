@@ -1,10 +1,10 @@
-import {LoginApi} from "../api/loginApi.js";
-import {router, ROUTES} from "../utils/Router.js";
-import {Store} from "../utils/Store.js";
-import {userTypeGuard} from "../typeguards.js";
-import {ILoginData, ILogonData, ILogonResponse, IUser} from "../models.js";
-import {WebchatController} from "./webchatController.js";
-import {handleResponse, handleSuccessResponse} from "../utils/ServiceUtils.js";
+import {LoginApi} from "../api/loginApi";
+import {router, ROUTES} from "../utils/Router";
+import {Store} from "../utils/Store";
+import {userTypeGuard} from "../typeguards";
+import {ILoginData, ILogonData, ILogonResponse, IUser} from "../models";
+import {WebchatController} from "./webchatController";
+import {handleResponse, handleSuccessResponse} from "../utils/ServiceUtils";
 
 const store = new Store();
 

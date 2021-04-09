@@ -9,6 +9,7 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "skipLibCheck": true,
     "lib": [
       "es2017",
       "es2016",
@@ -16,4 +17,7 @@
       "es5"
     ]
   },
+  "exclude": [
+    "**/node_modules/**/*"
+  ]
 }

@@ -1,9 +1,10 @@
-import {Block, IBlockProps} from "../../../common/block/Block.js";
-import {templateString} from './ChatsContainer.template.js'
-import {ChatBlock} from "./chat-preview/ChatBlock.js";
-import {PhotoBlock} from "../../../common/photo/PhotoBlock.js";
-import {Store} from "../../../../utils/Store.js";
-import {IChat} from "../../../../models.js";
+import {Block, IBlockProps} from "../../../common/block/Block";
+import {templateString} from './ChatsContainer.template';
+import {ChatBlock} from "./chat-preview/ChatBlock";
+import {PhotoBlock} from "../../../common/photo/PhotoBlock";
+import {Store} from "../../../../utils/Store";
+import {IChat} from "../../../../models";
+import {compile} from "handlebars";
 
 export interface IProps extends IBlockProps {
     children: ChatBlock[];
@@ -47,11 +48,6 @@ export class ChatsContainer extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-
-        const context = {
-            chats: this.props.children?.map(child => child.getId())
-        }
-        return template(context);
+        return compile<IContextTemplate>(templateString)({chats: this.props.children?.map(child => child.getId())});
     }
 }

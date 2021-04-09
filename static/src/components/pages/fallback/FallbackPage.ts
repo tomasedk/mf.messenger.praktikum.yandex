@@ -1,6 +1,7 @@
-import {Block, IBlockProps} from "../../common/block/Block.js";
-import {templateString} from './FallbackPage.template.js';
-import {Link} from "../../common/link/Link.js";
+import {Block, IBlockProps} from "../../common/block/Block";
+import {templateString} from './FallbackPage.template';
+import {Link} from "../../common/link/Link";
+import {compile} from "handlebars";
 
 export interface IProps extends IBlockProps {
     statusCode: string;
@@ -11,6 +12,7 @@ export interface IProps extends IBlockProps {
 interface IContextTemplate {
     statusCode: string;
     desc: string;
+    link?: string;
 }
 
 export class FallbackPage extends Block<IProps> {
@@ -19,12 +21,10 @@ export class FallbackPage extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             statusCode: this.props.statusCode,
             desc: this.props.desc,
             link: this.props.children?.[0].getId(),
-        }
-        return template(context);
+        });
     }
 }

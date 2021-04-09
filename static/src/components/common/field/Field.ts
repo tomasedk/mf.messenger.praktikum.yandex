@@ -1,5 +1,6 @@
-import {Block} from "../block/Block.js";
-import {templateString} from './Field.template.js'
+import {Block} from "../block/Block";
+import {templateString} from './Field.template';
+import {compile} from "handlebars";
 
 interface IProps {
     name: string;
@@ -18,9 +19,7 @@ export class Field extends Block<IProps> {
 
     render() {
         const {name, value} = this.props;
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-        const context = {name, value};
 
-        return template(context);
+        return compile<IContextTemplate>(templateString)({name, value});
     }
 }

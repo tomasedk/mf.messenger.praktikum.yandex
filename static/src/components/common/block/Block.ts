@@ -1,5 +1,5 @@
-import {EventBus} from "../../../utils/EventBus.js";
-import {getId} from "../../../utils/getId.js";
+import {EventBus} from "../../../utils/EventBus";
+import {getId} from "../../../utils/getId";
 
 export interface IMeta {
     tagName?: keyof HTMLElementTagNameMap;

@@ -1,8 +1,9 @@
-import {Block, IBlockProps, IMeta} from "../block/Block.js";
-import {templateString} from './Form.template.js';
-import {Button} from "../button/Button.js";
-import {Input} from "../input/Input.js";
-import {ModalBody} from "../../blocks/change-photo/modal-body/ModalBody.js";
+import {Block, IBlockProps, IMeta} from "../block/Block";
+import {templateString} from './Form.template';
+import {Button} from "../button/Button";
+import {Input} from "../input/Input";
+import {ModalBody} from "../../blocks/change-photo/modal-body/ModalBody";
+import {compile} from "handlebars";
 
 interface IProps extends IBlockProps {
     children: [Button, Input | ModalBody];
@@ -26,12 +27,9 @@ export class Form extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             footer: this.props.children?.[0].getId(),
             body: this.props.children?.[1].getId(),
-        }
-        return template(context);
+        });
     }
 }

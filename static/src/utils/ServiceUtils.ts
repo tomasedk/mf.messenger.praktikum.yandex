@@ -1,5 +1,5 @@
-import {isArrayOrObject, isObject, PlainObject} from './isArrayOrObject.js';
-import {router, ROUTES} from "./Router.js";
+import {isArrayOrObject, isObject, PlainObject} from './isArrayOrObject';
+import {router, ROUTES} from "./Router";
 
 /**
  * Получение ключа параметра.
@@ -133,20 +133,20 @@ export class HTTPTransport {
 /**
  * Обработчик успешного ответа от сервера.
  */
-export const handleSuccessResponse = <T>(response: XMLHttpRequest, callback?: (response?: T) => void) => {
+export const handleSuccessResponse = <T, K = void>(response: XMLHttpRequest, callback?: (response?: T) => K): K | undefined => {
     try {
-        callback?.(JSON.parse(response.response) as T);
+        return callback?.(JSON.parse(response.response) as T);
     } catch (e) {
-        callback?.();
+        return callback?.();
     }
 }
 
 /**
  * Обработчик ответа от сервера.
  */
-export const handleResponse = <T = unknown>(response: XMLHttpRequest, callback?: (response?: T) => void) => {
+export const handleResponse = <T = unknown, K = void>(response: XMLHttpRequest, callback?: (response?: T) => K): K | undefined => {
     if (response.status >= 200 && response.status < 300) {
-        handleSuccessResponse(response, callback);
+        return handleSuccessResponse(response, callback);
     } else if (response.status >= 400 && response.status < 500) {
         router.go(ROUTES.FALLBACK.NOT_FOUND);
     } else if (response.status >= 500) {

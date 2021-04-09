@@ -1,6 +1,6 @@
 export type TLog = Record<string, string | number | boolean>
 
-export function getValuesFromForm(form: HTMLFormElement): TLog {
+export function getValuesForm(form: HTMLFormElement): TLog {
     return Array.from(form?.elements)?.reduce((acc, {name, value}: HTMLInputElement) => {
         if (name) {
             acc[name] = value;
@@ -29,8 +29,8 @@ function validateField(elem: HTMLInputElement) {
             validationRegExp = /^(?=.{8,30}$)[a-zA-Z0-9]+$/g;
             break;
         case 'tel':
-            validationRegExp = /^((8|+7)[- ]?)?((?\d{3})?[- ]?)?[\d- ]{7,10}$/g;
-            break;
+            // validationRegExp = /^((8|+7)[- ]?)?((?\d{3})?[- ]?)?[\d- ]{7,10}$/g; // TODO
+            // break;
         default:
             validationRegExp = /^(?=.{3,16}$)[a-zA-Z0-9]+$/;
             break;

@@ -1,6 +1,15 @@
-import {Block, IBlockProps} from "../../../../common/block/Block.js";
-import {templateString} from './Message.template.js'
-import {PhotoBlock} from "../../../../common/photo/PhotoBlock.js";
+import {Block, IBlockProps} from "../../../../common/block/Block";
+import {templateString} from './Message.template';
+import {PhotoBlock} from "../../../../common/photo/PhotoBlock";
+import {compile} from "handlebars";
+
+export interface IMessage {
+    isYourMsg: boolean;
+    msgText: string;
+    msgDate: string;
+    isRead: boolean;
+    attachedImg?: boolean;
+}
 
 interface IProps extends IBlockProps {
     isYourMsg: boolean;
@@ -34,16 +43,14 @@ export class Message extends Block<IProps> {
             msgDate,
             isRead,
         } = this.props;
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             photo: children[0]?.getId(),
             isYourMsg,
             msgText,
             attachedImg,
             msgDate,
             isRead
-        }
-        return template(context);
+        });
     }
 }

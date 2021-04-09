@@ -1,6 +1,7 @@
-import {Block, IBlockProps} from "../block/Block.js";
-import {templateString} from './Modal.template.js'
-import {Form} from "../form/Form.js";
+import {Block, IBlockProps} from "../block/Block";
+import {templateString} from './Modal.template';
+import {Form} from "../form/Form";
+import {compile} from "handlebars";
 
 interface IProps extends IBlockProps {
     title: string;
@@ -11,6 +12,7 @@ interface IProps extends IBlockProps {
 interface IContextTemplate {
     additionalClasses: string;
     title: string;
+    form?: string;
 }
 
 export class Modal extends Block<IProps> {
@@ -19,13 +21,10 @@ export class Modal extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             title: this.props.title,
             additionalClasses: this.props.additionalClasses,
             form: this.props.children?.[0]?.getId(),
-        }
-        return template(context);
+        })
     }
 }

@@ -1,5 +1,6 @@
-import {Block} from "../../../common/block/Block.js";
-import {templateString} from './ModalBody.template.js'
+import {Block} from "../../../common/block/Block";
+import {templateString} from './ModalBody.template';
+import {compile} from "handlebars";
 
 export interface IProps {}
 
@@ -9,7 +10,6 @@ export class ModalBody extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<void>(templateString);
-        return template();
+        return compile<void>(templateString)();
     }
 }

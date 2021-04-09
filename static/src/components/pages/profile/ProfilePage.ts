@@ -1,12 +1,13 @@
-import {Block, IBlockProps} from "../../common/block/Block.js";
-import {templateString} from './ProfilePage.template.js'
-import {FieldsBlock} from "../../blocks/fields/FieldsBlock.js";
-import {PhotoBlock} from "../../common/photo/PhotoBlock.js";
-import {PhotoHover} from "../../blocks/change-photo/photo-hover/PhotoHover.js";
-import {Link} from "../../common/link/Link.js";
-import {Modal} from "../../common/modal/Modal.js";
-import {IUser} from "../../../models.js";
-import {Store} from "../../../utils/Store.js";
+import {Block, IBlockProps} from "../../common/block/Block";
+import {templateString} from './ProfilePage.template';
+import {FieldsBlock} from "../../blocks/fields/FieldsBlock";
+import {PhotoBlock} from "../../common/photo/PhotoBlock";
+import {PhotoHover} from "../../blocks/change-photo/photo-hover/PhotoHover";
+import {Link} from "../../common/link/Link";
+import {Modal} from "../../common/modal/Modal";
+import {IUser} from "../../../models";
+import {Store} from "../../../utils/Store";
+import {compile} from "handlebars";
 
 export interface IProps extends IBlockProps {
     isEdit: boolean;
@@ -46,9 +47,7 @@ export class ProfilePage extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             username: this.props.username || '',
             isEdit: this.props.isEdit,
             backlink: this.props.children[2]?.getId(),
@@ -56,7 +55,6 @@ export class ProfilePage extends Block<IProps> {
             fields: this.props.children[0]?.getId(),
             actions: this.props.children[3]?.getId(),
             modal: this.props.children[4]?.getId(),
-        }
-        return template(context);
+        });
     }
 }

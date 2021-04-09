@@ -1,4 +1,4 @@
-import {IOptions, HTTPTransport} from "../utils/ServiceUtils.js";
+import {IOptions, HTTPTransport} from "../utils/ServiceUtils";
 import {IAddToChatParams, ICreateChatReqParams, IGetChatsParams} from "../models";
 
 export class WebchatApi {
@@ -27,7 +27,6 @@ export class WebchatApi {
         return this.service.get(`/new/${id}`, options);
     }
 
-
     createChat(data: ICreateChatReqParams) {
         const options: IOptions = {
             data: JSON.stringify(data),
@@ -38,6 +37,22 @@ export class WebchatApi {
         }
 
         return this.service.post('', options);
+    }
+
+
+    getChatToken(chatId: number) {
+        const options: IOptions = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Set-Cookie': 'HttpOnly'
+            },
+        }
+
+        return this.service.post(`/token/${chatId}`, options);
+    }
+
+    public getMessagesWS(userId: number, chatId: number, token: string) {
+        return new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
     }
 
     addUsersToChat(data: IAddToChatParams): Promise<XMLHttpRequest> {

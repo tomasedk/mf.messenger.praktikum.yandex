@@ -1,6 +1,7 @@
-import {Block, IBlockProps} from "../../../common/block/Block.js";
-import {PhotoBlock} from "../../../common/photo/PhotoBlock.js";
-import {templateString} from './PhotoHover.template.js'
+import {Block, IBlockProps} from "../../../common/block/Block";
+import {PhotoBlock} from "../../../common/photo/PhotoBlock";
+import {templateString} from './PhotoHover.template';
+import {compile} from "handlebars";
 
 export interface IProps extends IBlockProps {
     children: [PhotoBlock];
@@ -16,8 +17,7 @@ export class PhotoHover extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-        return template({
+        return compile<IContextTemplate>(templateString)({
             photo: this.props.children?.[0].getId(),
         });
     }

@@ -1,8 +1,9 @@
-import {Block, IBlockProps} from "../../common/block/Block.js";
-import {templateString} from './StartPage.template.js'
+import {Block, IBlockProps} from "../../common/block/Block";
+import {templateString} from "./StartPage.template"
 import {Button} from "../../common/button/Button";
 import {Link} from "../../common/link/Link";
-import {FieldsBlock} from "../../blocks/fields/FieldsBlock.js";
+import {FieldsBlock} from "../../blocks/fields/FieldsBlock";
+import {compile} from "handlebars";
 
 interface IHeader {
     text: string;
@@ -27,14 +28,11 @@ export class StartPage extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             header: this.props.header,
             fields: this.props.children?.[0].getId(),
             submitButtonId: this.props.children?.[1].getId(),
             linkId: this.props.children?.[2].getId(),
-        }
-        return template(context);
+        });
     }
 }

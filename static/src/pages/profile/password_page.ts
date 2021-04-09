@@ -1,13 +1,13 @@
-import {Link} from "../../components/common/link/Link.js";
-import {Button} from "../../components/common/button/Button.js";
-import {PhotoBlock} from "../../components/common/photo/PhotoBlock.js";
-import {FieldsBlock} from "../../components/blocks/fields/FieldsBlock.js";
-import {isFormValid, validateForm, getValuesFromForm} from "../../utils/formUtils.js";
-import {router, ROUTES} from "../../utils/Router.js";
-import {PhotoHover} from "../../components/blocks/change-photo/photo-hover/PhotoHover.js";
-import {EditPassword} from "./ChangePassword/change_password_block.js";
-import {UsersController} from "../../controllers/usersController.js";
-import {changeLoginTypeGuard} from "../../typeguards.js";
+import {Link} from "../../components/common/link/Link";
+import {Button} from "../../components/common/button/Button";
+import {PhotoBlock} from "../../components/common/photo/PhotoBlock";
+import {FieldsBlock} from "../../components/blocks/fields/FieldsBlock";
+import {isFormValid, validateForm, getValuesForm} from "../../utils/formUtils";
+import {router, ROUTES} from "../../utils/Router";
+import {PhotoHover} from "../../components/blocks/change-photo/photo-hover/PhotoHover";
+import {EditPassword} from "./ChangePassword/change_password_block";
+import {UsersController} from "../../controllers/usersController";
+import {changeLoginTypeGuard} from "../../typeguards";
 
 const usersController = new UsersController();
 
@@ -22,7 +22,7 @@ export const profileChangePasswordProps = {
                 return;
             }
 
-            const formData = getValuesFromForm(changePasswordForm);
+            const formData = getValuesForm(changePasswordForm);
             if (isFormValid(changePasswordForm) && changeLoginTypeGuard(formData) && formData?.password === formData?.newPassword) {
                 usersController.changePassword(formData);
             }

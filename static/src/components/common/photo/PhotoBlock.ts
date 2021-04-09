@@ -1,8 +1,9 @@
-import {Block} from "../block/Block.js";
-import {templateString} from './PhotoBlock.template.js'
-import {Store} from "../../../utils/Store.js";
-import {LoginController} from "../../../controllers/loginController.js";
-import {IUser} from "../../../models.js";
+import {Block} from "../block/Block";
+import {templateString} from './PhotoBlock.template';
+import {Store} from "../../../utils/Store";
+import {LoginController} from "../../../controllers/loginController";
+import {IUser} from "../../../models";
+import {compile} from "handlebars";
 
 interface IProps {
     additionalClasses: string;
@@ -34,11 +35,8 @@ export class PhotoBlock extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             initials: this.props?.initials || '',
-        }
-        return template(context);
+        })
     }
 }

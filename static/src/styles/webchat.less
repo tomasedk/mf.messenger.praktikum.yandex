@@ -102,13 +102,16 @@
     }
 }
 
+.messages-container {
+    height: calc(100vh - 48px - 46px);
+    overflow-y: scroll;
+}
+
 .messages {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    overflow-y: scroll;
     width: 100%;
-    height: calc(100vh - 48px - 46px);
 }
 
 .message {

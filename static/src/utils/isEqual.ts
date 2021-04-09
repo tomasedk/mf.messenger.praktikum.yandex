@@ -1,4 +1,4 @@
-import {isObject} from './isArrayOrObject.js';
+import {isObject} from './isArrayOrObject';
 
 /**
  * Функция, выполняющая глубокое сравнение между двумя значениями и определяющая — являются ли они эквивалентными.

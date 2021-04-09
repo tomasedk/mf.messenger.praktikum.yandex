@@ -1,5 +1,5 @@
-import {IOptions, HTTPTransport} from "../utils/ServiceUtils.js";
-import {IEditProfileReq, ISearchByLoginReqParams, IChangePasswordReqParams} from "../models.js";
+import {IOptions, HTTPTransport} from "../utils/ServiceUtils";
+import {IEditProfileReq, ISearchByLoginReqParams, IChangePasswordReqParams} from "../models";
 
 
 export class UsersApi {

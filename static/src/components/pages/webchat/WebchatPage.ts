@@ -1,20 +1,21 @@
-import {Block} from "../../common/block/Block.js";
-import {templateString} from './WebchatPage.template.js'
-import {AsideBlock} from "../../blocks/aside/AsideBlock.js";
-import {Modal} from "../../common/modal/Modal.js";
-import {ChatViewBlock} from "../../blocks/chat-view/ChatViewBlock.js";
-import {WebchatController} from "../../../controllers/webchatController.js";
-import {Store} from "../../../utils/Store.js";
-import {MessagesContainer} from "../../blocks/chat-view/messages-container/MessagesContainer.js";
-import {Form} from "../../common/form/Form.js";
-import {getValuesFromForm} from "../../../utils/formUtils.js";
-import {Button} from "../../common/button/Button.js";
-import {Input} from "../../common/input/Input.js";
-import {Link} from "../../common/link/Link.js";
-import {router, ROUTES} from "../../../utils/Router.js";
-import {ChatsContainer} from "../../blocks/aside/chats-container/ChatsContainer.js";
-import {addUserTypeGuard} from "../../../typeguards.js";
-import {IChat} from "../../../models.js";
+import {Block} from "../../common/block/Block";
+import {templateString} from './WebchatPage.template';
+import {AsideBlock} from "../../blocks/aside/AsideBlock";
+import {Modal} from "../../common/modal/Modal";
+import {ChatViewBlock} from "../../blocks/chat-view/ChatViewBlock";
+import {WebchatController} from "../../../controllers/webchatController";
+import {Store} from "../../../utils/Store";
+import {MessagesContainer} from "../../blocks/chat-view/messages-container/MessagesContainer";
+import {Form} from "../../common/form/Form";
+import {getValuesForm} from "../../../utils/formUtils";
+import {Button} from "../../common/button/Button";
+import {Input} from "../../common/input/Input";
+import {Link} from "../../common/link/Link";
+import {router, ROUTES} from "../../../utils/Router";
+import {ChatsContainer} from "../../blocks/aside/chats-container/ChatsContainer";
+import {addUserTypeGuard} from "../../../typeguards";
+import {IChat} from "../../../models";
+import {compile} from "handlebars";
 
 export interface IProps {
     children: [AsideBlock, Modal?, ChatViewBlock?];
@@ -71,7 +72,7 @@ export class WebchatPage extends Block<IProps> {
                                     return;
                                 }
 
-                                const addUserFormData = getValuesFromForm(addUserForm);
+                                const addUserFormData = getValuesForm(addUserForm);
 
                                 if (addUserTypeGuard(addUserFormData)) {
                                     webchatController.addUserToChat(addUserFormData);
@@ -112,6 +113,7 @@ export class WebchatPage extends Block<IProps> {
             if (selectedChat) {
                 let children = [...this.props.children] as [AsideBlock, Modal?, ChatViewBlock?];
                 children[2] = new ChatViewBlock({
+                    chatId: selectedChat.id,
                     header: {
                         username: selectedChat.fullName,
                         onlineTimeAgo: '2',
@@ -130,13 +132,10 @@ export class WebchatPage extends Block<IProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             aside: this.props.children[0]?.getId(),
             modal: this.props.children[1]?.getId(),
             selectedChat: this.props.children[2]?.getId(),
-        }
-        return template(context);
+        })
     }
 }

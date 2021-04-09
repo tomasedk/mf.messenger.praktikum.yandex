@@ -1,5 +1,6 @@
-import {Block, IBlockProps, IMeta} from "../../common/block/Block.js";
-import {templateString} from './FieldsBlock.template.js'
+import {Block, IBlockProps, IMeta} from "../../common/block/Block";
+import {templateString} from './FieldsBlock.template';
+import {compile} from "handlebars";
 
 interface IContextTemplate {
     fields?: string[];
@@ -11,11 +12,8 @@ export class FieldsBlock extends Block<IBlockProps> {
     }
 
     render() {
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
-
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             fields: this.props.children?.map((child: Block<IBlockProps>) => child.getId()),
-        }
-        return template(context);
+        })
     }
 }

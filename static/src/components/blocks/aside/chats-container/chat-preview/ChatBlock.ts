@@ -1,8 +1,9 @@
-import {Block, IBlockProps} from "../../../../common/block/Block.js";
-import {templateString} from './ChatBlock.template.js'
-import {PhotoBlock} from "../../../../common/photo/PhotoBlock.js";
-import {Store} from "../../../../../utils/Store.js";
-import {IChat} from "../../../../../models.js";
+import {Block, IBlockProps} from "../../../../common/block/Block";
+import {templateString} from './ChatBlock.template';
+import {PhotoBlock} from "../../../../common/photo/PhotoBlock";
+import {Store} from "../../../../../utils/Store";
+import {IChat} from "../../../../../models";
+import {compile} from "handlebars";
 
 export interface IChatBlockProps extends IBlockProps {
     isSelected: boolean;
@@ -60,9 +61,8 @@ export class ChatBlock extends Block<IChatBlockProps> {
             msgDate,
             newMsgsCount
         } = this.props;
-        const template = window.Handlebars.compile<IContextTemplate>(templateString);
 
-        const context = {
+        return compile<IContextTemplate>(templateString)({
             isSelected,
             photo: children[0]?.getId(),
             fullName,
@@ -71,7 +71,6 @@ export class ChatBlock extends Block<IChatBlockProps> {
             msgDate,
             newMsgsCount,
             noNewMsgs: newMsgsCount < 1
-        }
-        return template(context);
+        });
     }
 }

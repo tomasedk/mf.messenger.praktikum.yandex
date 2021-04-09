@@ -1,11 +1,11 @@
-import {Input} from "../../components/common/input/Input.js";
-import {Button} from "../../components/common/button/Button.js";
-import {Link} from "../../components/common/link/Link.js";
-import {validateForm, getValuesFromForm, isFormValid} from "../../utils/formUtils.js";
-import {FieldsBlock} from "../../components/blocks/fields/FieldsBlock.js";
-import {router, ROUTES} from "../../utils/Router.js";
-import {LoginController} from "../../controllers/loginController.js";
-import {logonTypeGuard} from "../../typeguards.js";
+import {Input} from "../../components/common/input/Input";
+import {Button} from "../../components/common/button/Button";
+import {Link} from "../../components/common/link/Link";
+import {validateForm, getValuesForm, isFormValid} from "../../utils/formUtils";
+import {FieldsBlock} from "../../components/blocks/fields/FieldsBlock";
+import {router, ROUTES} from "../../utils/Router";
+import {LoginController} from "../../controllers/loginController";
+import {logonTypeGuard} from "../../typeguards";
 
 const loginController = new LoginController();
 
@@ -23,7 +23,7 @@ export const logonProps = {
                 return;
             }
 
-            const formData = getValuesFromForm(form);
+            const formData = getValuesForm(form);
             if (isFormValid(form) && logonTypeGuard(formData)) {
                 loginController.logon(formData);
             }

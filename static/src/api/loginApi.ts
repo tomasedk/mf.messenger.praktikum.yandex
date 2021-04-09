@@ -1,5 +1,5 @@
-import {IOptions, HTTPTransport} from "../utils/ServiceUtils.js";
-import {ILoginData, ILogonData} from "../models.js";
+import {IOptions, HTTPTransport} from "../utils/ServiceUtils";
+import {ILoginData, ILogonData} from "../models";
 
 export class LoginApi {
     private service = new HTTPTransport('https://ya-praktikum.tech/api/v2/auth');

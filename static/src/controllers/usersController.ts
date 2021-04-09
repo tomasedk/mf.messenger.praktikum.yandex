@@ -1,8 +1,8 @@
-import {router, ROUTES} from "../utils/Router.js";
-import {UsersApi} from "../api/usersApi.js";
-import {Store} from "../utils/Store.js";
-import {IEditProfileReq, IEditProfileRes, IChangePasswordReqParams} from "../models.js";
-import {handleResponse} from "../utils/ServiceUtils.js";
+import {router, ROUTES} from "../utils/Router";
+import {UsersApi} from "../api/usersApi";
+import {Store} from "../utils/Store";
+import {IEditProfileReq, IEditProfileRes, IChangePasswordReqParams} from "../models";
+import {handleResponse} from "../utils/ServiceUtils";
 
 let store = new Store();
 

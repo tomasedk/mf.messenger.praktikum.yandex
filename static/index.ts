@@ -1,15 +1,20 @@
-import {router, ROUTES} from './src/utils/Router.js';
-import {StartPage} from './src/components/pages/start/StartPage.js';
-import {WebchatPage} from './src/components/pages/webchat/WebchatPage.js';
-import {ProfilePage} from "./src/components/pages/profile/ProfilePage.js";
-import {FallbackPage} from "./src/components/pages/fallback/FallbackPage.js";
-import {loginProps} from './src/pages/start/login.js';
-import {logonProps} from './src/pages/start/logon.js';
-import {profileDetailsProps} from "./src/pages/profile/details.js";
-import {profileChangePasswordProps} from "./src/pages/profile/password_page.js";
-import {profileEditProps} from "./src/pages/profile/edit.js";
-import {notFoundProps} from "./src/pages/fallback/404.js";
-import {internalServerProps} from "./src/pages/fallback/500.js";
+import {router, ROUTES} from './src/utils/Router';
+import {StartPage} from './src/components/pages/start/StartPage';
+import {WebchatPage} from './src/components/pages/webchat/WebchatPage';
+import {ProfilePage} from "./src/components/pages/profile/ProfilePage";
+import {FallbackPage} from "./src/components/pages/fallback/FallbackPage";
+import {loginProps} from './src/pages/start/login';
+import {logonProps} from './src/pages/start/logon';
+import {profileDetailsProps} from "./src/pages/profile/details";
+import {profileChangePasswordProps} from "./src/pages/profile/password_page";
+import {profileEditProps} from "./src/pages/profile/edit";
+import {notFoundProps} from "./src/pages/fallback/404";
+import {internalServerProps} from "./src/pages/fallback/500";
+import './common.less';
+import './src/styles/start_page.less';
+import './src/styles/fallbacks.less';
+import './src/styles/webchat.less';
+import './src/styles/profile.less';
 
 router
     .use(ROUTES.START.LOGIN, StartPage, loginProps)

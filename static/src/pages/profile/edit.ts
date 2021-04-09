@@ -1,16 +1,16 @@
-import {Link} from "../../components/common/link/Link.js";
-import {Input} from "../../components/common/input/Input.js";
-import {Button} from "../../components/common/button/Button.js";
-import {Modal} from "../../components/common/modal/Modal.js";
-import {ModalBody} from "../../components/blocks/change-photo/modal-body/ModalBody.js";
-import {PhotoHover} from "../../components/blocks/change-photo/photo-hover/PhotoHover.js";
-import {FieldsBlock} from "../../components/blocks/fields/FieldsBlock.js";
-import {PhotoBlock} from "../../components/common/photo/PhotoBlock.js";
-import {isFormValid, validateForm, getValuesFromForm} from "../../utils/formUtils.js";
-import {Form} from "../../components/common/form/Form.js";
-import {router, ROUTES} from "../../utils/Router.js";
-import {UsersController} from "../../controllers/usersController.js";
-import {userUpdateTypeGuard} from "../../typeguards.js";
+import {Link} from "../../components/common/link/Link";
+import {Input} from "../../components/common/input/Input";
+import {Button} from "../../components/common/button/Button";
+import {Modal} from "../../components/common/modal/Modal";
+import {ModalBody} from "../../components/blocks/change-photo/modal-body/ModalBody";
+import {PhotoHover} from "../../components/blocks/change-photo/photo-hover/PhotoHover";
+import {FieldsBlock} from "../../components/blocks/fields/FieldsBlock";
+import {PhotoBlock} from "../../components/common/photo/PhotoBlock";
+import {isFormValid, validateForm, getValuesForm} from "../../utils/formUtils";
+import {Form} from "../../components/common/form/Form";
+import {router, ROUTES} from "../../utils/Router";
+import {UsersController} from "../../controllers/usersController";
+import {userUpdateTypeGuard} from "../../typeguards";
 
 const usersController = new UsersController();
 
@@ -25,7 +25,7 @@ export const profileEditProps = {
                 return;
             }
 
-            const editFormData = getValuesFromForm(editProfileForm);
+            const editFormData = getValuesForm(editProfileForm);
             if (userUpdateTypeGuard(editFormData) && isFormValid(editProfileForm)) {
                 usersController.editProfile(editFormData);
             }
