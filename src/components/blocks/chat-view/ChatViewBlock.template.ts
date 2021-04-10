@@ -23,4 +23,4 @@ export const templateString = `<main class="chat-view">
         <input class="input-message" placeholder="Сообщение" type="text">
         <button class="round-button round-button__send"></button>
     </div>
-</main>`
+</main>`;

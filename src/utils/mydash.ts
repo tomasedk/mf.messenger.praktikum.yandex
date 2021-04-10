@@ -13,10 +13,12 @@ export function isArray(value: unknown): value is [] {
  * Проверка, является ли значение объектом.
  */
 export function isObject(value: unknown): value is PlainObject {
-    return typeof value === 'object'
-        && value !== null
-        && value.constructor === Object
-        && Object.prototype.toString.call(value) === '[object Object]';
+    return (
+        typeof value === 'object' &&
+        value !== null &&
+        value.constructor === Object &&
+        Object.prototype.toString.call(value) === '[object Object]'
+    );
 }
 
 /**
@@ -40,13 +42,13 @@ export function isEqual(a: any, b: any): boolean {
 
     let answer = true;
 
-    for (let key of Object.keys(a)) {
+    for (const key of Object.keys(a)) {
         if (!isEqual(a[key], b[key])) {
             answer = false;
         }
     }
 
-    return answer
+    return answer;
 }
 
 /**
@@ -57,10 +59,6 @@ export function isEqual(a: any, b: any): boolean {
  * @param value Значение, которое необходимо установить.
  */
 export function set(object: any, path: string, value: unknown): PlainObject | unknown {
-    if (typeof path !== 'string') {
-        throw new Error('path must be string');
-    }
-
     if (path === '') {
         return value;
     }
@@ -69,9 +67,13 @@ export function set(object: any, path: string, value: unknown): PlainObject | un
         return object;
     }
 
-    let [key, ...restPath] = path.split('.');
+    const [key, ...restPath] = path.split('.');
 
-    object[key] = set(object.hasOwnProperty(key) ? object[key] : {}, restPath.join('.'), value);
+    object[key] = set(
+        Object.prototype.hasOwnProperty.call(object, key) ? object[key] : {},
+        restPath.join('.'),
+        value
+    );
 
     return object;
 }
@@ -87,7 +89,7 @@ export function get(object: any, path: string, defaultValue?: unknown): PlainObj
     const keys = path.split('.');
 
     let result = object;
-    for (let key of keys) {
+    for (const key of keys) {
         result = result[key];
 
         if (result === undefined) {

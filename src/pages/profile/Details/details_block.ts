@@ -1,10 +1,10 @@
-import {Block} from "../../../core/Block";
-import {templateString} from "../../../components/blocks/fields/FieldsBlock.template";
-import {Field} from "../../../components/common/field/Field";
-import {Store} from "../../../core/Store";
-import {LoginController} from "../../../controllers/loginController";
-import {IUser} from "../../../models";
-import {compile} from "handlebars";
+import {compile} from 'handlebars';
+import {Block} from '../../../core/Block';
+import {templateString} from '../../../components/blocks/fields/FieldsBlock.template';
+import {Field} from '../../../components/common/field/Field';
+import {Store} from '../../../core/Store';
+import {LoginController} from '../../../controllers/loginController';
+import {IUser} from '../../../models';
 
 interface IProps {
     children?: Field[];
@@ -19,7 +19,7 @@ const store = new Store();
 
 export class DetailsBlock extends Block<IProps> {
     constructor(props: IProps) {
-        super({className: "profile-page__body"}, props);
+        super({className: 'profile-page__body'}, props);
     }
 
     componentDidMount() {
@@ -44,6 +44,6 @@ export class DetailsBlock extends Block<IProps> {
     render() {
         return compile<IContextTemplate>(templateString)({
             fields: this.props.children?.map((child: Field) => child.getId()),
-        })
+        });
     }
 }

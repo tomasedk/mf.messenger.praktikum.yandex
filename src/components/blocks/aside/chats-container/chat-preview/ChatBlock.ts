@@ -1,9 +1,9 @@
-import {Block, IBlockProps} from "../../../../../core/Block";
+import {compile} from 'handlebars';
+import {Block, IBlockProps} from '../../../../../core/Block';
 import {templateString} from './ChatBlock.template';
-import {PhotoBlock} from "../../../../common/photo/PhotoBlock";
-import {Store} from "../../../../../core/Store";
-import {IChat} from "../../../../../models";
-import {compile} from "handlebars";
+import {PhotoBlock} from '../../../../common/photo/PhotoBlock';
+import {Store} from '../../../../../core/Store';
+import {IChat} from '../../../../../models';
 
 export interface IChatBlockProps extends IBlockProps {
     isSelected: boolean;
@@ -27,28 +27,28 @@ interface IContextTemplate {
     noNewMsgs: boolean;
 }
 
-let store = new Store();
+const store = new Store();
 
 export class ChatBlock extends Block<IChatBlockProps> {
     constructor(props: IChatBlockProps) {
-        super({tagName: "li", className: props.isSelected ? 'chat chat_selected' : 'chat'}, props);
+        super({tagName: 'li', className: props.isSelected ? 'chat chat_selected' : 'chat'}, props);
     }
 
     componentDidMount() {
         const that = this;
         this.props.events = {
-            click: function (_e) {
-                let chats: IChat[] = store.getValue('chats');
+            click(_e) {
+                const chats: IChat[] = store.getValue('chats');
 
-                chats.forEach(chat => {
+                chats.forEach((chat) => {
                     chat.isSelected = chat.id === that.props.id;
                     return chat;
                 });
 
                 // TODO: Такой хак сделан для того, чтобы триггернуть событие уведомления подписчиков.
                 store.setValue('chats', chats);
-            }
-        }
+            },
+        };
     }
 
     render() {
@@ -59,7 +59,7 @@ export class ChatBlock extends Block<IChatBlockProps> {
             isYourLastMsg,
             msgText,
             msgDate,
-            newMsgsCount
+            newMsgsCount,
         } = this.props;
 
         return compile<IContextTemplate>(templateString)({
@@ -70,7 +70,7 @@ export class ChatBlock extends Block<IChatBlockProps> {
             msgText,
             msgDate,
             newMsgsCount,
-            noNewMsgs: newMsgsCount < 1
+            noNewMsgs: newMsgsCount < 1,
         });
     }
 }

@@ -84,12 +84,12 @@ export interface IUser {
  * Интерфейс чата.
  */
 export interface IChat {
-    isSelected: boolean,
-    newMsgsCount: number,
-    fullName: string,
-    id: number,
-    msgDate?: string,
-    msgText?: string,
+    isSelected: boolean;
+    newMsgsCount: number;
+    fullName: string;
+    id: number;
+    msgDate?: string;
+    msgText?: string;
 }
 
 /**
@@ -101,7 +101,7 @@ export interface IEditProfileReq {
     display_name: string;
     login: string;
     email: string;
-    phone?:	string;
+    phone?: string;
 }
 
 /**

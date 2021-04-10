@@ -13,4 +13,4 @@ export const templateString = `
         <div data-set-id="{{actions}}"></div>
     {{#if isEdit}}</form>{{/if}}
 </main>
-`
+`;

@@ -1,7 +1,7 @@
-import {Block, IBlockProps} from "../../../core/Block";
+import {compile} from 'handlebars';
+import {Block, IBlockProps} from '../../../core/Block';
 import {templateString} from './FallbackPage.template';
-import {Link} from "../../common/link/Link";
-import {compile} from "handlebars";
+import {Link} from '../../common/link/Link';
 
 export interface IProps extends IBlockProps {
     statusCode: string;
@@ -17,7 +17,7 @@ interface IContextTemplate {
 
 export class FallbackPage extends Block<IProps> {
     constructor(props: IProps) {
-        super({tagName: "main", className: "fallback-page"}, props);
+        super({tagName: 'main', className: 'fallback-page'}, props);
     }
 
     render() {

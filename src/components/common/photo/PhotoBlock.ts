@@ -1,9 +1,9 @@
-import {Block} from "../../../core/Block";
+import {compile} from 'handlebars';
+import {Block} from '../../../core/Block';
 import {templateString} from './PhotoBlock.template';
-import {Store} from "../../../core/Store";
-import {LoginController} from "../../../controllers/loginController";
-import {IUser} from "../../../models";
-import {compile} from "handlebars";
+import {Store} from '../../../core/Store';
+import {LoginController} from '../../../controllers/loginController';
+import {IUser} from '../../../models';
 
 interface IProps {
     additionalClasses: string;
@@ -37,6 +37,6 @@ export class PhotoBlock extends Block<IProps> {
     render() {
         return compile<IContextTemplate>(templateString)({
             initials: this.props?.initials || '',
-        })
+        });
     }
 }

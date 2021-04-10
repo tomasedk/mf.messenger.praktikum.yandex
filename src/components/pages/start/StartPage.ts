@@ -1,9 +1,9 @@
-import {Block, IBlockProps} from "../../../core/Block";
-import {templateString} from "./StartPage.template"
-import {Button} from "../../common/button/Button";
-import {Link} from "../../common/link/Link";
-import {FieldsBlock} from "../../blocks/fields/FieldsBlock";
-import {compile} from "handlebars";
+import {compile} from 'handlebars';
+import {Block, IBlockProps} from '../../../core/Block';
+import {templateString} from './StartPage.template';
+import {Button} from '../../common/button/Button';
+import {Link} from '../../common/link/Link';
+import {FieldsBlock} from '../../blocks/fields/FieldsBlock';
 
 interface IHeader {
     text: string;
@@ -24,7 +24,7 @@ interface IContextTemplate {
 
 export class StartPage extends Block<IProps> {
     constructor(props: IProps) {
-        super({tagName: "main", className: "start-page"}, props);
+        super({tagName: 'main', className: 'start-page'}, props);
     }
 
     render() {

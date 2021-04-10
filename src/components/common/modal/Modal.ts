@@ -1,7 +1,7 @@
-import {Block, IBlockProps} from "../../../core/Block";
+import {compile} from 'handlebars';
+import {Block, IBlockProps} from '../../../core/Block';
 import {templateString} from './Modal.template';
-import {Form} from "../form/Form";
-import {compile} from "handlebars";
+import {Form} from '../form/Form';
 
 interface IProps extends IBlockProps {
     title: string;
@@ -25,6 +25,6 @@ export class Modal extends Block<IProps> {
             title: this.props.title,
             additionalClasses: this.props.additionalClasses,
             form: this.props.children?.[0]?.getId(),
-        })
+        });
     }
 }

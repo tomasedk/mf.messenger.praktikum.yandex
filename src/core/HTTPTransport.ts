@@ -1,5 +1,5 @@
 import {isArrayOrObject, isObject, PlainObject} from '../utils/mydash';
-import {router, ROUTES} from "./Router";
+import {router, ROUTES} from './Router';
 
 /**
  * Получение ключа параметра.
@@ -33,7 +33,9 @@ function queryString(data: PlainObject): string {
         throw new Error('input must be an object');
     }
 
-    return getParams(data).map(arr => arr.join('=')).join('&');
+    return getParams(data)
+        .map((arr) => arr.join('='))
+        .join('&');
 }
 
 /**
@@ -53,7 +55,7 @@ export interface IOptions {
  * @param headers Объект, для описания заголовков, у которого ключ и значение всегда string.
  */
 interface IExtendedOptions {
-    method?: EMethod
+    method?: EMethod;
     data?: any;
     headers?: any;
 }
@@ -66,26 +68,53 @@ enum EMethod {
 }
 
 export class HTTPTransport {
-    constructor(private baseUrl: string = '') {
-    }
+    constructor(private baseUrl: string = '') {}
 
-    get = (url: string, options: IOptions = {}) => this.request(url, {
-        ...options,
-        method: EMethod.GET
-    }, options.timeout);
-    post = (url: string, options: IOptions = {}) => this.request(url, {
-        ...options,
-        method: EMethod.POST
-    }, options.timeout);
-    put = (url: string, options: IOptions = {}) => this.request(url, {
-        ...options,
-        method: EMethod.PUT
-    }, options.timeout);
-    delete = (url: string, options: IOptions = {}) => this.request(url, {
-        ...options,
-        method: EMethod.DELETE
-    }, options.timeout);
-    request = (url: string, options: IExtendedOptions = {}, timeout = 5000): Promise<XMLHttpRequest> => {
+    get = (url: string, options: IOptions = {}) =>
+        this.request(
+            url,
+            {
+                ...options,
+                method: EMethod.GET,
+            },
+            options.timeout
+        );
+
+    post = (url: string, options: IOptions = {}) =>
+        this.request(
+            url,
+            {
+                ...options,
+                method: EMethod.POST,
+            },
+            options.timeout
+        );
+
+    put = (url: string, options: IOptions = {}) =>
+        this.request(
+            url,
+            {
+                ...options,
+                method: EMethod.PUT,
+            },
+            options.timeout
+        );
+
+    delete = (url: string, options: IOptions = {}) =>
+        this.request(
+            url,
+            {
+                ...options,
+                method: EMethod.DELETE,
+            },
+            options.timeout
+        );
+
+    request = (
+        url: string,
+        options: IExtendedOptions = {},
+        timeout = 5000
+    ): Promise<XMLHttpRequest> => {
         const {headers = {}, method, data} = options;
         const that = this;
 
@@ -102,12 +131,12 @@ export class HTTPTransport {
                 method,
                 isGet && !!data
                     ? `${that.baseUrl}${url}${queryString(data)}`
-                    : `${that.baseUrl}${url}`,
+                    : `${that.baseUrl}${url}`
             );
 
             xhr.withCredentials = true;
 
-            Object.keys(headers).forEach(key => {
+            Object.keys(headers).forEach((key) => {
                 xhr.setRequestHeader(key, headers[key]);
             });
 
@@ -133,25 +162,32 @@ export class HTTPTransport {
 /**
  * Обработчик успешного ответа от сервера.
  */
-export const handleSuccessResponse = <T, K = void>(response: XMLHttpRequest, callback?: (response?: T) => K): K | undefined => {
+export const handleSuccessResponse = <T, K = void>(
+    response: XMLHttpRequest,
+    callback?: (response?: T) => K
+): K | undefined => {
     try {
         return callback?.(JSON.parse(response.response) as T);
     } catch (e) {
         return callback?.();
     }
-}
+};
 
 /**
  * Обработчик ответа от сервера.
  */
-export const handleResponse = <T = unknown, K = void>(response: XMLHttpRequest, callback?: (response?: T) => K): K | undefined => {
+export const handleResponse = <T = unknown, K = void>(
+    response: XMLHttpRequest,
+    callback?: (response?: T) => K
+): K | undefined => {
     if (response.status >= 200 && response.status < 300) {
         return handleSuccessResponse(response, callback);
-    } else if (response.status >= 400 && response.status < 500) {
+    }
+    if (response.status >= 400 && response.status < 500) {
         router.go(ROUTES.FALLBACK.NOT_FOUND);
     } else if (response.status >= 500) {
         router.go(ROUTES.FALLBACK.NOT_FOUND);
     } else {
         console.log('Неизвестный ответ от сервера: ', JSON.parse(response.response) as T);
     }
-}
+};

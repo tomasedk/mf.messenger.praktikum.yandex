@@ -1,6 +1,6 @@
-import {Block} from "../../../core/Block";
+import {compile} from 'handlebars';
+import {Block} from '../../../core/Block';
 import {templateString} from './Field.template';
-import {compile} from "handlebars";
 
 interface IProps {
     name: string;
@@ -14,7 +14,7 @@ interface IContextTemplate {
 
 export class Field extends Block<IProps> {
     constructor(props: IProps) {
-        super({tagName: "div"}, props);
+        super({tagName: 'div'}, props);
     }
 
     render() {

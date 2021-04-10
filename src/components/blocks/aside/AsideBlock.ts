@@ -1,9 +1,9 @@
-import {Block, IBlockProps} from "../../../core/Block";
+import {compile} from 'handlebars';
+import {Block, IBlockProps} from '../../../core/Block';
 import {templateString} from './AsideBlock.template';
-import {ChatsContainer} from "./chats-container/ChatsContainer";
-import {Link} from "../../common/link/Link";
-import {WebchatController} from "../../../controllers/webchatController";
-import {compile} from "handlebars";
+import {ChatsContainer} from './chats-container/ChatsContainer';
+import {Link} from '../../common/link/Link';
+import {WebchatController} from '../../../controllers/webchatController';
 
 export interface IProps extends IBlockProps {
     children: [Link, ChatsContainer];
@@ -23,10 +23,12 @@ export class AsideBlock extends Block<IProps> {
 
     componentDidMount() {
         this.props.events = {
-            click: function (e: Event) {
+            click(e: Event) {
                 const addChatButton = (e.target as Element).closest('.round-button__add');
                 // TODO: Наименование нового чата берется из строки поиска
-                const searchInput = this.querySelector('.search__input') as HTMLInputElement | undefined;
+                const searchInput = this.querySelector('.search__input') as
+                    | HTMLInputElement
+                    | undefined;
 
                 /**
                  * Обработчик создания чата.
@@ -34,15 +36,15 @@ export class AsideBlock extends Block<IProps> {
                 if (searchInput && addChatButton && this.contains(addChatButton)) {
                     webchatController.createChat({title: searchInput.value || 'New chat'});
                 }
-            }
-        }
+            },
+        };
     }
 
     render() {
         const context = {
             profileLink: this.props.children?.[0].getId(),
             body: this.props.children?.[1].getId(),
-        }
+        };
 
         return compile<IContextTemplate>(templateString)(context);
     }

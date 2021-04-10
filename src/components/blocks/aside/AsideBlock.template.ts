@@ -9,4 +9,4 @@ export const templateString = `
     </nav>
 </div>
 <div data-set-id="{{body}}"></div>
-`
+`;

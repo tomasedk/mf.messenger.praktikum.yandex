@@ -1,1 +1,1 @@
-export const templateString = `{{initials}}`
+export const templateString = `{{initials}}`;

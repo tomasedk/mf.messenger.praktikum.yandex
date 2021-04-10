@@ -7,4 +7,4 @@ export const templateString = `<div data-set-id="{{modal}}"></div>
         <div class="empty-chat">Выберите чат для отправки сообщения</div>
     {{/if}}
 </main>
-`
+`;

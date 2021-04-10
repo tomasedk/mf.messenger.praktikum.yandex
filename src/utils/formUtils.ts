@@ -1,4 +1,4 @@
-export type TLog = Record<string, string | number | boolean>
+export type TLog = Record<string, string | number | boolean>;
 
 export function getValuesForm(form: HTMLFormElement): TLog {
     return Array.from(form?.elements)?.reduce((acc, {name, value}: HTMLInputElement) => {
@@ -29,14 +29,14 @@ function validateField(elem: HTMLInputElement) {
             validationRegExp = /^(?=.{8,30}$)[a-zA-Z0-9]+$/g;
             break;
         case 'tel':
-            // validationRegExp = /^((8|+7)[- ]?)?((?\d{3})?[- ]?)?[\d- ]{7,10}$/g; // TODO
-            // break;
+            validationRegExp = /^(\+7|7|8)?[\s-]?\(?[489][0-9]{2}\)?[\s-]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/g;
+            break;
         default:
             validationRegExp = /^(?=.{3,16}$)[a-zA-Z0-9]+$/;
             break;
     }
 
-    return validationRegExp.test(elem.value)
+    return validationRegExp.test(elem.value);
 }
 
 export function isFormValid(form: HTMLFormElement): boolean {
@@ -52,9 +52,9 @@ export function validateForm(form: HTMLFormElement) {
         .filter((elem) => elem.type !== 'submit')
         .forEach((elem) => {
             if (validateField(elem)) {
-                elem.setAttribute("invalid", "false");
+                elem.setAttribute('invalid', 'false');
             } else {
-                elem.setAttribute("invalid", "true");
+                elem.setAttribute('invalid', 'true');
             }
-        })
+        });
 }

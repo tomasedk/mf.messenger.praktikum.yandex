@@ -1,12 +1,12 @@
-import {Block, IBlockProps, IMeta} from "../../../core/Block";
+import {compile} from 'handlebars';
+import {Block, IBlockProps, IMeta} from '../../../core/Block';
 import {templateString} from './Link.template';
-import {compile} from "handlebars";
 
 interface IProps extends IBlockProps {
     additionalClasses: string;
     text?: {
         className?: string;
-        label: string
+        label: string;
     };
     href?: string;
     img?: {
@@ -20,7 +20,7 @@ interface IContextTemplate {
     additionalClasses: string;
     text?: {
         className?: string;
-        label: string
+        label: string;
     };
     href?: string;
     img?: {
@@ -32,7 +32,7 @@ interface IContextTemplate {
 
 export class Link extends Block<IProps> {
     constructor(meta: IMeta, props: IProps) {
-        super({tagName: "div", className: meta.className || ''}, props);
+        super({tagName: 'div', className: meta.className || ''}, props);
     }
 
     render() {
@@ -43,6 +43,6 @@ export class Link extends Block<IProps> {
             href,
             img,
             text,
-        })
+        });
     }
 }

@@ -1,6 +1,5 @@
-import {IOptions, HTTPTransport} from "../core/HTTPTransport";
-import {IEditProfileReq, ISearchByLoginReqParams, IChangePasswordReqParams} from "../models";
-
+import {IOptions, HTTPTransport} from '../core/HTTPTransport';
+import {IEditProfileReq, ISearchByLoginReqParams, IChangePasswordReqParams} from '../models';
 
 export class UsersApi {
     private service = new HTTPTransport('https://ya-praktikum.tech/api/v2/user');
@@ -10,9 +9,9 @@ export class UsersApi {
             data: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'accept': 'application/json'
+                accept: 'application/json',
             },
-        }
+        };
 
         return this.service.post('/search', options);
     }
@@ -22,9 +21,9 @@ export class UsersApi {
             data: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'accept': 'application/json'
+                accept: 'application/json',
             },
-        }
+        };
 
         return this.service.put('/password', options);
     }
@@ -34,9 +33,9 @@ export class UsersApi {
             data: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'accept': 'application/json'
+                accept: 'application/json',
             },
-        }
+        };
 
         return this.service.put('/profile', options);
     }
@@ -44,7 +43,7 @@ export class UsersApi {
     changePhoto(formData: FormData) {
         const options: IOptions = {
             data: formData,
-        }
+        };
 
         return this.service.put('/profile/avatar', options);
     }

@@ -3,4 +3,4 @@ export const templateString = `
 <div class="modal__footer">
     <div data-set-id="{{footer}}"></div>
 </div>
-`
+`;

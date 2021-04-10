@@ -10,4 +10,4 @@ export const templateString = `
     <span class="chat__message-date">{{msgDate}}</span>
     <div class="notification chat__message-notification {{#if noNewMsgs}}chat__message-notification_hidden{{/if}}">{{newMsgsCount}}</div>
 </div>
-`
+`;

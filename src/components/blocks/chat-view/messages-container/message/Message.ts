@@ -1,7 +1,7 @@
-import {Block, IBlockProps} from "../../../../../core/Block";
+import {compile} from 'handlebars';
+import {Block, IBlockProps} from '../../../../../core/Block';
 import {templateString} from './Message.template';
-import {PhotoBlock} from "../../../../common/photo/PhotoBlock";
-import {compile} from "handlebars";
+import {PhotoBlock} from '../../../../common/photo/PhotoBlock';
 
 export interface IMessage {
     isYourMsg: boolean;
@@ -31,18 +31,11 @@ interface IContextTemplate {
 
 export class Message extends Block<IProps> {
     constructor(props: IProps) {
-        super({tagName: "div"}, props);
+        super({tagName: 'div'}, props);
     }
 
     render() {
-        const {
-            children,
-            isYourMsg,
-            msgText,
-            attachedImg,
-            msgDate,
-            isRead,
-        } = this.props;
+        const {children, isYourMsg, msgText, attachedImg, msgDate, isRead} = this.props;
 
         return compile<IContextTemplate>(templateString)({
             photo: children[0]?.getId(),
@@ -50,7 +43,7 @@ export class Message extends Block<IProps> {
             msgText,
             attachedImg,
             msgDate,
-            isRead
+            isRead,
         });
     }
 }

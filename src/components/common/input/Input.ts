@@ -1,6 +1,6 @@
-import {Block, IBlockProps, IMeta} from "../../../core/Block";
+import {compile} from 'handlebars';
+import {Block, IBlockProps, IMeta} from '../../../core/Block';
 import {templateString} from './Input.template';
-import {compile} from "handlebars";
 
 interface IProps extends IBlockProps {
     id: string;

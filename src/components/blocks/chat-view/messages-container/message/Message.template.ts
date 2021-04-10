@@ -8,4 +8,4 @@ export const templateString = `<li class="message">
             {{#if isRead}}<img alt="blue checkmark" class="message__checkmark" src="../../../../assets/images/checkmark.svg">{{/if}}
         </div>
     </div>
-</li>`
+</li>`;

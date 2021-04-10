@@ -1,9 +1,9 @@
-import {Block, IBlockProps, IMeta} from "../../../core/Block";
+import {compile} from 'handlebars';
+import {Block, IBlockProps, IMeta} from '../../../core/Block';
 import {templateString} from './Form.template';
-import {Button} from "../button/Button";
-import {Input} from "../input/Input";
-import {ModalBody} from "../../blocks/change-photo/modal-body/ModalBody";
-import {compile} from "handlebars";
+import {Button} from '../button/Button';
+import {Input} from '../input/Input';
+import {ModalBody} from '../../blocks/change-photo/modal-body/ModalBody';
 
 interface IProps extends IBlockProps {
     children: [Button, Input | ModalBody];
@@ -16,14 +16,17 @@ interface IContextTemplate {
 
 export class Form extends Block<IProps> {
     constructor(meta: IMeta, props: IProps) {
-        super({
-            tagName: 'form',
-            className: meta.className,
-            extraAttributes: {
-                enctype: "multipart/form-data",
-                action: "#",
-            }
-        }, props);
+        super(
+            {
+                tagName: 'form',
+                className: meta.className,
+                extraAttributes: {
+                    enctype: 'multipart/form-data',
+                    action: '#',
+                },
+            },
+            props
+        );
     }
 
     render() {

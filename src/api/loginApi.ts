@@ -1,5 +1,5 @@
-import {IOptions, HTTPTransport} from "../core/HTTPTransport";
-import {ILoginData, ILogonData} from "../models";
+import {IOptions, HTTPTransport} from '../core/HTTPTransport';
+import {ILoginData, ILogonData} from '../models';
 
 export class LoginApi {
     private service = new HTTPTransport('https://ya-praktikum.tech/api/v2/auth');
@@ -9,9 +9,9 @@ export class LoginApi {
             data: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'accept': 'application/json'
+                accept: 'application/json',
             },
-        }
+        };
 
         return this.service.post('/signin', options);
     }
@@ -20,7 +20,7 @@ export class LoginApi {
         const options: IOptions = {
             data: JSON.stringify(data),
             headers: {'Content-Type': 'application/json'},
-        }
+        };
 
         return this.service.post('/signup', options);
     }
@@ -28,7 +28,7 @@ export class LoginApi {
     logout() {
         const options: IOptions = {
             headers: {'Content-Type': 'application/json'},
-        }
+        };
 
         return this.service.post('/logout', options);
     }
@@ -36,7 +36,7 @@ export class LoginApi {
     getUserInfo() {
         const options: IOptions = {
             headers: {'Content-Type': 'application/json'},
-        }
+        };
 
         return this.service.get('/user', options);
     }

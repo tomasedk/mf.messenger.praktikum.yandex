@@ -1,13 +1,13 @@
-import {Block, IBlockProps} from "../../../core/Block";
+import {compile} from 'handlebars';
+import {Block, IBlockProps} from '../../../core/Block';
 import {templateString} from './ProfilePage.template';
-import {FieldsBlock} from "../../blocks/fields/FieldsBlock";
-import {PhotoBlock} from "../../common/photo/PhotoBlock";
-import {PhotoHover} from "../../blocks/change-photo/photo-hover/PhotoHover";
-import {Link} from "../../common/link/Link";
-import {Modal} from "../../common/modal/Modal";
-import {IUser} from "../../../models";
-import {Store} from "../../../core/Store";
-import {compile} from "handlebars";
+import {FieldsBlock} from '../../blocks/fields/FieldsBlock';
+import {PhotoBlock} from '../../common/photo/PhotoBlock';
+import {PhotoHover} from '../../blocks/change-photo/photo-hover/PhotoHover';
+import {Link} from '../../common/link/Link';
+import {Modal} from '../../common/modal/Modal';
+import {IUser} from '../../../models';
+import {Store} from '../../../core/Store';
 
 export interface IProps extends IBlockProps {
     isEdit: boolean;
@@ -29,7 +29,7 @@ const store = new Store();
 
 export class ProfilePage extends Block<IProps> {
     constructor(props: IProps) {
-        super({tagName: "div", className: "profile-page"}, props);
+        super({tagName: 'div', className: 'profile-page'}, props);
     }
 
     componentDidMount() {

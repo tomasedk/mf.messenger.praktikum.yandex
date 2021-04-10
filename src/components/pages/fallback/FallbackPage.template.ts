@@ -3,4 +3,4 @@ export const templateString = `<h1 class="fallback-page__header">{{statusCode}}<
 <nav>
     <div data-set-id="{{link}}"></div>
 </nav>
-`
+`;

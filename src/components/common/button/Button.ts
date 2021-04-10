@@ -1,6 +1,6 @@
-import {Block, IBlockProps, IMeta} from "../../../core/Block";
+import {compile} from 'handlebars';
+import {Block, IBlockProps, IMeta} from '../../../core/Block';
 import {templateString} from './Button.template';
-import {compile} from "handlebars";
 
 interface IProps extends IBlockProps {
     value: string;
@@ -19,6 +19,5 @@ export class Button extends Block<IProps> {
         const {value} = this.props;
 
         return compile<IContextTemplate>(templateString)({value});
-
     }
 }

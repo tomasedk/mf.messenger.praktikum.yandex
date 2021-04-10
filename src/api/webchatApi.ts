@@ -1,5 +1,5 @@
-import {IOptions, HTTPTransport} from "../core/HTTPTransport";
-import {IAddToChatParams, ICreateChatReqParams, IGetChatsParams} from "../models";
+import {IOptions, HTTPTransport} from '../core/HTTPTransport';
+import {IAddToChatParams, ICreateChatReqParams, IGetChatsParams} from '../models';
 
 export class WebchatApi {
     private service = new HTTPTransport('https://ya-praktikum.tech/api/v2/chats');
@@ -9,9 +9,9 @@ export class WebchatApi {
             data,
             headers: {
                 'Content-Type': 'application/json',
-                'Set-Cookie': 'HttpOnly'
+                'Set-Cookie': 'HttpOnly',
             },
-        }
+        };
 
         return this.service.get('', options);
     }
@@ -20,9 +20,9 @@ export class WebchatApi {
         const options: IOptions = {
             headers: {
                 'Content-Type': 'application/json',
-                'Set-Cookie': 'HttpOnly'
+                'Set-Cookie': 'HttpOnly',
             },
-        }
+        };
 
         return this.service.get(`/new/${id}`, options);
     }
@@ -32,21 +32,20 @@ export class WebchatApi {
             data: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'Set-Cookie': 'HttpOnly'
+                'Set-Cookie': 'HttpOnly',
             },
-        }
+        };
 
         return this.service.post('', options);
     }
-
 
     getChatToken(chatId: number) {
         const options: IOptions = {
             headers: {
                 'Content-Type': 'application/json',
-                'Set-Cookie': 'HttpOnly'
+                'Set-Cookie': 'HttpOnly',
             },
-        }
+        };
 
         return this.service.post(`/token/${chatId}`, options);
     }
@@ -60,9 +59,9 @@ export class WebchatApi {
             data: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'Set-Cookie': 'HttpOnly'
+                'Set-Cookie': 'HttpOnly',
             },
-        }
+        };
 
         return this.service.put('/users', options);
     }
@@ -72,9 +71,9 @@ export class WebchatApi {
             data: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'Set-Cookie': 'HttpOnly'
+                'Set-Cookie': 'HttpOnly',
             },
-        }
+        };
 
         return this.service.delete('/users', options);
     }

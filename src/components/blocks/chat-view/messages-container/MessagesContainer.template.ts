@@ -6,4 +6,4 @@ export const templateString = `<ul class="messages">
     {{else}}
         Переписка пуста
     {{/if}}
-</ul>`
+</ul>`;

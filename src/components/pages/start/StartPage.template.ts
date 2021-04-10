@@ -7,4 +7,4 @@ export const templateString = `<form action="#" class="start-form">
     <nav>
         <div data-set-id="{{linkId}}"></div>
     </nav>
-</form>`
+</form>`;

@@ -5,4 +5,4 @@ export const templateString = `<div class="input {{additionalClasses}}">
     </label>
     <span class="error input__error">{{error}}</span>
 </div>
-`
+`;

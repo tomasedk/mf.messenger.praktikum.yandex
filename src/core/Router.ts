@@ -1,5 +1,5 @@
 import {isEqual} from '../utils/mydash';
-import {Block} from "./Block";
+import {Block} from './Block';
 
 export const ROUTES = {
     START: {
@@ -16,18 +16,22 @@ export const ROUTES = {
     FALLBACK: {
         NOT_FOUND: '/404',
         INTERNAL_SERVER: '/500',
-    }
-}
+    },
+};
 
 interface BlockConstructor {
-    new(props: any): Block<any>;
+    new (props: any): Block<any>;
 }
 
 class Route {
     private block: Block<any> | null = null;
 
-    constructor(private pathname: string, private blockClass: BlockConstructor, private rootQuery: string, private ownProps: any) {
-    }
+    constructor(
+        private pathname: string,
+        private blockClass: BlockConstructor,
+        private rootQuery: string,
+        private ownProps: any
+    ) {}
 
     /**
      * Обработчик перехода на роут.
@@ -37,7 +41,7 @@ class Route {
             this.pathname = pathname as string;
             this.render();
         }
-    }
+    };
 
     /**
      * Обработчик ухода с роута.
@@ -46,14 +50,14 @@ class Route {
         if (this.block) {
             this.block.hide(this.rootQuery);
         }
-    }
+    };
 
     /**
      * Проверка идентичности путей.
      */
     public match = (pathname?: string): boolean => {
         return isEqual(pathname, this.pathname);
-    }
+    };
 
     /**
      * Обработчик отрисовки роута.
@@ -66,14 +70,18 @@ class Route {
             return;
         }
         Block.injectInDOM(this.rootQuery, this.block);
-    }
+    };
 }
 
 export class Router {
     static instance: Router;
+
     private routes: Route[];
+
     private currentRoute: Route | null;
+
     private history: History;
+
     private readonly rootQuery: string;
 
     constructor(rootQuery: string) {
@@ -121,8 +129,8 @@ export class Router {
     }
 
     public go(pathname: string) {
-        this.history.pushState({}, "", pathname);
-        this.onRoute(pathname)
+        this.history.pushState({}, '', pathname);
+        this.onRoute(pathname);
     }
 
     public back() {
@@ -134,8 +142,8 @@ export class Router {
     }
 
     private getRoute(pathname: string): Route | undefined {
-        return this.routes.find(route => route.match(pathname));
+        return this.routes.find((route) => route.match(pathname));
     }
 }
 
-export const router = new Router(".app");
+export const router = new Router('.app');

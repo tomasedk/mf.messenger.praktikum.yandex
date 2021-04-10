@@ -1,12 +1,12 @@
-import {EventBus} from "./EventBus";
-import {uuid} from "../utils/uuid";
+import {EventBus} from './EventBus';
+import {uuid} from '../utils/uuid';
 
 export interface IMeta {
     tagName?: keyof HTMLElementTagNameMap;
     className?: string;
     extraAttributes?: {
         [key: string]: string;
-    }
+    };
 }
 
 interface IMetaPrivate extends IMeta {
@@ -15,10 +15,10 @@ interface IMetaPrivate extends IMeta {
 }
 
 enum EVENTS {
-    INIT = "init",
-    FLOW_CDM = "flow:component-did-mount",
-    FLOW_SCU = "flow:should-component-update",
-    FLOW_RENDER = "flow:render",
+    INIT = 'init',
+    FLOW_CDM = 'flow:component-did-mount',
+    FLOW_SCU = 'flow:should-component-update',
+    FLOW_RENDER = 'flow:render',
 }
 
 /**
@@ -28,14 +28,17 @@ export interface ISystemEventDataTypes<T> {
     [EVENTS.INIT]: never;
     [EVENTS.FLOW_CDM]: never;
     [EVENTS.FLOW_SCU]: {
-        oldProps: T,
-        newProps: T,
+        oldProps: T;
+        newProps: T;
     };
     [EVENTS.FLOW_RENDER]: never;
 }
 
 export type EventMap = {
-    [key in keyof HTMLElementEventMap]?: (this: HTMLElement, ev: (HTMLElementEventMap[keyof HTMLElementEventMap])) => any;
+    [key in keyof HTMLElementEventMap]?: (
+        this: HTMLElement,
+        ev: HTMLElementEventMap[keyof HTMLElementEventMap]
+    ) => any;
 };
 
 export interface IBlockProps {
@@ -43,6 +46,7 @@ export interface IBlockProps {
     children?: (Block<any> | undefined)[];
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 type TProps = object & IBlockProps;
 
 export abstract class Block<T extends TProps> {
@@ -52,13 +56,16 @@ export abstract class Block<T extends TProps> {
             root.appendChild(block.element);
         }
         return root;
-    }
+    };
 
     private readonly meta: IMetaPrivate;
+
     private _element: HTMLElement | null = null;
+
     private eventBus: EventBus<EVENTS, ISystemEventDataTypes<T>>;
 
     protected props: T;
+
     protected readonly _id: string;
 
     protected constructor(meta: IMeta, props: T) {
@@ -112,8 +119,7 @@ export abstract class Block<T extends TProps> {
         this.eventBus.emit(EVENTS.FLOW_RENDER);
     }
 
-    protected componentDidMount(_oldProps: T) {
-    }
+    protected componentDidMount(_oldProps: T) {}
 
     private _shouldComponentUpdate(oldProps: T, newProps: T) {
         const response = this.shouldComponentUpdate(oldProps, newProps);
@@ -158,8 +164,8 @@ export abstract class Block<T extends TProps> {
 
         if (this.props.children && this.props.children?.length > 0) {
             for (let i = 0; i < this.props.children.length; i++) {
-                const queryStr = `[data-set-id="${this.props.children[i]?._id}"]`
-                let elemToReplace = this._element?.querySelector(queryStr);
+                const queryStr = `[data-set-id="${this.props.children[i]?._id}"]`;
+                const elemToReplace = this._element?.querySelector(queryStr);
                 const newElem = this.props.children[i]?._element;
                 if (elemToReplace && newElem) {
                     elemToReplace.replaceWith(newElem);
@@ -198,10 +204,10 @@ export abstract class Block<T extends TProps> {
         return new Proxy<T>(props, {
             get: (target, prop: (string | symbol) & keyof T): T => {
                 const value = target[prop];
-                return typeof value === "function" ? value.bind(target) : value;
+                return typeof value === 'function' ? value.bind(target) : value;
             },
             set: (target: T, prop: (string | symbol) & keyof T, value) => {
-                const oldProps = {...target}
+                const oldProps = {...target};
                 target[prop] = value;
 
                 this.eventBus.emit(EVENTS.FLOW_SCU, {
@@ -211,13 +217,13 @@ export abstract class Block<T extends TProps> {
                 return true;
             },
             deleteProperty() {
-                throw new Error("Нет доступа");
-            }
+                throw new Error('Нет доступа');
+            },
         });
     }
 
     private createDocumentElement({tagName, className, extraAttributes}: IMetaPrivate) {
-        let elem = document.createElement(tagName);
+        const elem = document.createElement(tagName);
 
         if (className) {
             elem.className = className;
@@ -225,7 +231,7 @@ export abstract class Block<T extends TProps> {
         if (extraAttributes) {
             Object.entries(extraAttributes).forEach(([key, value]) => {
                 (elem as any)[key] = value;
-            })
+            });
         }
         return elem;
     }

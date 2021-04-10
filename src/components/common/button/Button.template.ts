@@ -1,1 +1,1 @@
-export const templateString = `<button class="button">{{value}}</button>`
+export const templateString = `<button class="button">{{value}}</button>`;
