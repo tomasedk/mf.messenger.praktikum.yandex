@@ -18,7 +18,7 @@ module.exports = () => ({
     plugins: [
         createHTMLWebpackPlugin({
             title: "React boilerplate",
-            template: "static/index.html"
+            template: "src/assets/html/index.html"
         }),
         createCleanWebpackPlugin(),
         createWebpackProgressPlugin()

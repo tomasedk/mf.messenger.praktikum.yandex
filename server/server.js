@@ -5,8 +5,8 @@ const PORT = 4000;
 
 const app = express();
 
-// const staticPath = path.join(__dirname, '..', 'static');
-// const staticPathIndex = path.join(__dirname, '..', 'static', 'index.html');
+// const staticPath = path.join(__dirname, '..', 'src', 'assets', 'html');
+// const staticPathIndex = path.join(__dirname, '..', 'src', 'assets', 'html', 'index.html');
 const staticPath = path.join(__dirname, '..', 'dist');
 const staticPathIndex = path.join(__dirname, '..', 'dist', 'index.html');
 
