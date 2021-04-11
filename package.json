@@ -15,10 +15,11 @@
   },
   "scripts": {
     "tsc": "node node_modules/typescript/bin/tsc --noEmit -p ./tsconfig.json",
-    "webpack": "webpack",
-    "build:dev": "npm run webpack -- --mode=development",
-    "build:prod": "npm run webpack -- --mode=production",
-    "lint:check": "eslint --debug \"src/**/*.{ts,tsx}\"",
+    "start": "npm run build:prod && npm run server",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production",
+    "server": "node server/server.js",
+    "lint:check": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:fix": "eslint --fix \"src/**/*.{ts,tsx}\"",
     "analyze": "npm run build:dev && webpack-bundle-analyzer --port 4200 dist/stats.json",
     "madge-circular": "madge --circular ./src/index.ts"

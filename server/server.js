@@ -1,7 +1,9 @@
 const express = require('express');
-const path = require("path");
+const path = require('path');
 
-const PORT = 4000;
+const PORT = 3000;
+
+const hostname = '0.0.0.0'; // сервер запустим на всех интерфейсах
 
 const app = express();
 
@@ -16,6 +18,6 @@ app.use(function (req, res) {
     res.sendFile(staticPathIndex);
 });
 
-app.listen(PORT, 'localhost', () => {
+app.listen(PORT, hostname, () => {
     console.log(`Server is listening on ${PORT} port...`);
-})
+});
